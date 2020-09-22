@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use App\Tag;
 
 class TagsTableSeeder extends Seeder
@@ -13,6 +12,19 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+      $tags = [
+        'WiFi',
+        'Posto Macchina',
+        'Piscina',
+        'Portineria',
+        'Sauna',
+        'Vista Mare',
+      ];
+
+      foreach ($tags as $tag) {
+        $new_tag = new Tag();
+        $new_tag->tag = $tag;
+        $new_tag->save();
+      }
     }
 }

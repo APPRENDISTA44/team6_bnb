@@ -42,6 +42,7 @@ class UsersTableSeeder extends Seeder
         $new_user->email =  $emails[$i];
         $new_user->birth = Carbon::createFromFormat('d-m-Y',$dates_of_birth[$i]);
         $new_user->password = Hash::make($passwords[$i]);
+        $new_user->save();
       }
 
     }
