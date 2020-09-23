@@ -14,12 +14,13 @@ class Apartment extends Model
     'number_of_bathrooms',
     'sqm',
     'address',
+    'city',
+    'cap',
+    'province',
     'image',
-    'sponsor_expiry',
     'latitude',
     'longitude',
     'availability',
-    'views',
     'user_id'
   ];
 
@@ -34,4 +35,19 @@ class Apartment extends Model
   public function tags(){
     return $this->belongsToMany('App\Tag');
   }
+
+  public function views(){
+    return $this->hasMany('App\View');
+  }
+
+  public function sponsors()
+    {
+        return $this->belongsToMany('App\Sponsor')
+          ->using('App\ApartmentSponsor')
+          ->withPivot([
+                          'date_start',
+                          'date_end'
+                      ]);
+    }
+
 }

@@ -22,12 +22,13 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('number_of_bathrooms');
             $table->mediumInteger('sqm')->nullable();
             $table->text('address');
+            $table->string('city', 150);
+            $table->mediumInteger('cap');
+            $table->string('province', 10);
             $table->string('image', 255);
-            $table->date('sponsor_expiry')->nullable();
             $table->float('latitude', 11, 7);
             $table->float('longitude', 11, 7);
             $table->boolean('availability');
-            $table->integer('views');
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')

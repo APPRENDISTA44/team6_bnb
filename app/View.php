@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class View extends Model
 {
   protected $fillable = [
     'apartment_id',
-    'text',
-    'sender'
+    'date'
   ];
-
 
   public function apartment(){
     return $this->belongsTo('App\Apartment');
   }
+
+
 }

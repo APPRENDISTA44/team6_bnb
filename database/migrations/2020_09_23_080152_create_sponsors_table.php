@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateSponsorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
+            $table->float('price',5,2);
+            $table->string('offer_name',150);
+            $table->mediumInteger('hours_duration');
             $table->timestamps();
-
-            $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')
-                  ->references('id')
-                  ->on('apartments');
-
-            $table->text('text');
-            $table->string('sender');
-
         });
     }
 
@@ -35,6 +29,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('sponsors');
     }
 }
