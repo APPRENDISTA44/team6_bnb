@@ -19,6 +19,7 @@ class ViewsTableSeeder extends Seeder
         $new_view = new View();
         $new_view->apartment_id = rand(1,4);
         $new_view->date = $faker->dateTime('now','CEST');
+        $new_view->save();
       }
     }
 }
