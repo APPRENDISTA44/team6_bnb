@@ -54,8 +54,7 @@ class ApartmentsTableSeeder extends Seeder
 
         $new_apartment->sponsors()->attach(1,
           [
-            'date_start' => Carbon::createFromFormat('d-m-Y H:i:s', '24-09-2020 00:00:00'),
-            'date_end' => Carbon::createFromFormat('d-m-Y H:i:s', '25-09-2020 00:00:00')
+            'date_end' => Carbon::createFromFormat('d-m-Y H:i:s', '25-09-2020 14:20:36')
           ]);
       }
     }

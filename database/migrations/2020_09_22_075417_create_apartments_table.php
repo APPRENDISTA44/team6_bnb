@@ -17,13 +17,13 @@ class CreateApartmentsTable extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('description')->nullable();
-            $table->smallInteger('number_of_rooms');
-            $table->tinyInteger('number_of_beds');
-            $table->tinyInteger('number_of_bathrooms');
-            $table->mediumInteger('sqm')->nullable();
+            $table->unsignedSmallInteger('number_of_rooms');
+            $table->unsignedTinyInteger('number_of_beds');
+            $table->unsignedTinyInteger('number_of_bathrooms');
+            $table->unsignedMediumInteger('sqm')->nullable();
             $table->text('address');
             $table->string('city', 150);
-            $table->mediumInteger('cap');
+            $table->unsignedMediumInteger('cap');
             $table->string('province', 10);
             $table->string('image', 255);
             $table->float('latitude', 11, 7);

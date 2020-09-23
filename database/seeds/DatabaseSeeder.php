@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         UsersTableSeeder::class,
         TagsTableSeeder::class,
         SponsorsTableSeeder::class,
-        ViewsTableSeeder::class,
         ApartmentsTableSeeder::class,
+        ViewsTableSeeder::class,
         MessagesTableSeeder::class
 
       ]);
