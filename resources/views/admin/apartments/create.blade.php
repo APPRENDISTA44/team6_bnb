@@ -19,7 +19,7 @@
 
         {{-- creo form per creazione appartamenti--}}
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.apartment.store')}}" method="post" enctype="multipart/form-data">
           @csrf
           @method('POST')
 
@@ -74,7 +74,7 @@
           <div class="ms_cap">
             <br>
             <label>CAP</label>
-            <input type="number" class="form-control" name="cap" value="{{old('cap')}}" max="99999">
+            <input type="number" class="form-control" name="cap" value="{{old('cap')}}" max="99999" min="0">
           </div>
 
           <div class="ms_province">
@@ -85,21 +85,21 @@
 
           <br>
           <button type="button" class="btn btn-success" id="ms_coordinate_generator">Genera coordinate</button>
+          <div class="d-none ms_error">Alcuni campi sono scorretti</div>
 
           <div class="ms_coordinates">
             <label>Longitudine</label>
-            <input type="number" class="form-control ms_longitude" name="longitude" value="{{old('longitude')}}">
+            <input type="number" step="any" class="form-control ms_longitude" name="longitude" value="{{old('longitude')}}">
 
             <label>Latitudine</label>
-            <input type="number" class="form-control ms_latitude" name="latitude" value="{{old('latitude')}}">
+            <input type="number" step="any" class="form-control ms_latitude" name="latitude" value="{{old('latitude')}}">
 
           </div>
-
 
           <div>
             <br>
             <label>Post Image</label>
-            <input type="file" name="image_path" accept="image/*">
+            <input type="file" name="image" accept="image/*">
           </div>
 
           <div>
