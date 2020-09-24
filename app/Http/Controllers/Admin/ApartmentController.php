@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Tag;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,7 +28,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-      return view('admin.apartments.create');
+      $tags = Tag::all();
+      return view('admin.apartments.create',compact('tags'));
     }
 
     /**
@@ -82,6 +84,10 @@ class ApartmentController extends Controller
 
       $apartment_new->availability = true;
       $apartment_new->save();
+      
+      if (isset($data['tags'])) {
+        $apartment_new->tags()->sync($apartment_new['tags']);
+      }
 
 
     }

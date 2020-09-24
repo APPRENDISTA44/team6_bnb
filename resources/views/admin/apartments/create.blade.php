@@ -59,6 +59,30 @@
             <input type="number" class="form-control" name="sqm" value="{{old('sqm')}}">
           </div>
 
+          @if (!empty($tags))
+
+            <div class="ms_tags_container">
+              @foreach ($tags as $tag)
+                <div>
+                  <input type="checkbox" name="tags[]" value="{{$tag->id}}">
+                  <label>{{$tag->tag}}</label>
+                </div>
+              @endforeach
+
+            </div>
+          @endif
+
+
+
+
+
+          <div>
+            <br>
+            <label>Inserisci un'immagine dell'appartamento</label>
+            <input type="file" name="image" accept="image/*">
+          </div>
+
+
           <div class="ms_address">
             <br>
             <label>Indirizzo</label>
@@ -96,11 +120,6 @@
 
           </div>
 
-          <div>
-            <br>
-            <label>Post Image</label>
-            <input type="file" name="image" accept="image/*">
-          </div>
 
           <div>
             <br>
