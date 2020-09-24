@@ -40,7 +40,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-      //validiamo
+      // Validiamo i dati immessi dall'utente nel form
       $request->validate([
         'title' => 'required|max:255',
         'description' => 'max:3000',
@@ -57,9 +57,10 @@ class ApartmentController extends Controller
         'longitude' => 'required|numeric'
       ]);
 
+      // Prendo i dati dal form
       $data = $request->all();
 
-      //creo nuovo appartamento
+      // Creo nuova istanza di appartamento con i dati
       $apartment_new = new Apartment();
 
       $apartment_new->title = $data['title'];
@@ -75,21 +76,27 @@ class ApartmentController extends Controller
       $apartment_new->latitude = $data['latitude'];
       $apartment_new->longitude = $data['longitude'];
 
-      //salvo immagine
+      // Salvo immagine caricata nel server
       $path = $request->file('image')->store('images','public');
+      // Salvo nel database il path dell'immagine
       $apartment_new->image = $path;
 
-      //salvo l'id dell'utente attivo
+      // Salvo l'id dell'utente admin che sta creando l'appartamento
       $apartment_new->user_id = Auth::id();
 
+      // Setto disponibilità di visualizzazione default true
       $apartment_new->availability = true;
+
+      // Salvo i dati dell'istanza
       $apartment_new->save();
-      
+
+      // Verifichiamo che siano presenti dei tags
+      // se ci sono li associamo al nuovo appartamento
       if (isset($data['tags'])) {
-        $apartment_new->tags()->sync($apartment_new['tags']);
+        $apartment_new->tags()->sync($data['tags']);
       }
 
-
+      // todo: Return redirect show
     }
 
     /**

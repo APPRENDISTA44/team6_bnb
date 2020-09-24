@@ -48292,10 +48292,10 @@ $(document).ready(function () {});
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\appre\Desktop\boolean\Esercizi\team6_bnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\appre\Desktop\boolean\Esercizi\team6_bnb\resources\js\partials\homepage.js */"./resources/js/partials/homepage.js");
-__webpack_require__(/*! C:\Users\appre\Desktop\boolean\Esercizi\team6_bnb\resources\js\partials\createapartment.js */"./resources/js/partials/createapartment.js");
-module.exports = __webpack_require__(/*! C:\Users\appre\Desktop\boolean\Esercizi\team6_bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\partials\homepage.js */"./resources/js/partials/homepage.js");
+__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\partials\createapartment.js */"./resources/js/partials/createapartment.js");
+module.exports = __webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
