@@ -9,6 +9,7 @@ use App\Tag;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class ApartmentController extends Controller
 {
     /**
@@ -104,9 +105,31 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
-    {
-        $tags = Tag::all();
-        return view('admin.apartments.edit', compact('apartment','tags'));
+    {   
+        // trovo l'id utente loggato
+        $user_id = Auth::id();
+
+        // controllo se corrisponde con l'id dell'utente che ha creato l'appartamento
+        if($user_id === $apartment->user_id) {
+
+            // se corrisponde procedo:
+
+            // prendo i nomi dei tag dalla tabella del database
+            $tags = Tag::all();
+            // ritorno la view per modificare gli appartamenti con i tag che servono
+            // per fare i checkbox
+            return view('admin.apartments.edit', compact('apartment','tags'));
+
+        } else {
+          // se non corrisponde mostro pagina 404
+          abort(404);
+        }
+
+       
+
+        
+
+
     }
 
     /**
