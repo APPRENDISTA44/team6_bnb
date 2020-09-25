@@ -45,8 +45,6 @@ $(document).ready(function(){
               $('#ms_form_create .ms_coordinates .ms_longitude').val(data.results[0].position.lon);
               $('#ms_form_create .ms_coordinates .ms_latitude').val(data.results[0].position.lat);
             }
-
-
           },
           error : function(){
             alert('errore');
@@ -54,30 +52,9 @@ $(document).ready(function(){
         });
 
 
-
-
-
-
-
     }else {
       $("#ms_form_create .ms_error").removeClass('d-none');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //funzione per codificare i dati per URI
     //PARAMETRO: stringa
@@ -87,6 +64,5 @@ $(document).ready(function(){
 
     }
   });
-
 
 });

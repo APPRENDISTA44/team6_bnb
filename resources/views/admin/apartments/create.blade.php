@@ -41,28 +41,28 @@
           <div>
             <br>
             <label>Numero di stanze</label>
-            <input type="number" class="form-control" name="number_of_rooms" value="{{old('number_of_rooms')}}">
+            <input type="number" class="form-control" name="number_of_rooms" value="{{old('number_of_rooms')}}"  max="50" min="1">
           </div>
 
           <!-- campo numero di letti -->
           <div>
             <br>
             <label>Numero di letti</label>
-            <input type="number" class="form-control" name="number_of_beds" value="{{old('number_of_beds')}}">
+            <input type="number" class="form-control" name="number_of_beds" value="{{old('number_of_beds')}}"  max="150" min="1">
           </div>
 
           <!-- numero di bagni -->
           <div>
             <br>
             <label>Numbero di bagni</label>
-            <input type="number" class="form-control" name="number_of_bathrooms" value="{{old('number_of_bathrooms')}}">
+            <input type="number" class="form-control" name="number_of_bathrooms" value="{{old('number_of_bathrooms')}}" max="25" min="1">
           </div>
 
           <!-- campo metri quadrati  -->
           <div>
             <br>
             <label>Metri quadrati</label>
-            <input type="number" class="form-control" name="sqm" value="{{old('sqm')}}">
+            <input type="number" class="form-control" name="sqm" value="{{old('sqm')}}" max="1000" min="10" placeholder="minimo 10">
           </div>
 
           <!-- i checkboxes -->

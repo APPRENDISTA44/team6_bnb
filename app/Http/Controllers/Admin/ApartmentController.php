@@ -43,7 +43,7 @@ class ApartmentController extends Controller
     {
       // Validiamo i dati immessi dall'utente nel form
       // regole nella funzione validation Rules
-      $request->validate($this->validationRules());
+      $request->validate($this->validationRulesCreate($this->validationRules()));
 
       // Prendo i dati dal form
       $data = $request->all();
@@ -105,7 +105,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
-    {   
+    {
         // trovo l'id utente loggato
         $user_id = Auth::id();
 
@@ -125,11 +125,6 @@ class ApartmentController extends Controller
           abort(404);
         }
 
-       
-
-        
-
-
     }
 
     /**
@@ -148,6 +143,14 @@ class ApartmentController extends Controller
       // Prendo i dati cambiati dal form
       $data = $request->all();
 
+      if ( !empty($request->file('image')) ) {
+        // Salvo immagine caricata nel server
+        $path = $request->file('image')->store('images','public');
+        // Salvo nel database il path dell'immagine
+        $data['image'] = $path;
+      }
+
+
       // Verifichiamo che siano presenti dei tags
       // se ci sono li associamo al nuovo appartamento
       if (isset($data['tags'])) {
@@ -158,6 +161,9 @@ class ApartmentController extends Controller
 
       // Update dei dati dell'apartamento
       $apartment->update($data);
+
+
+
 
       // todo: Return redirect show
 
@@ -188,7 +194,6 @@ class ApartmentController extends Controller
         'city' => 'required|max:150|string|alpha',
         'cap' => 'required|min:0|max:99999|numeric',
         'province' => 'required|min:2|max:2|string|alpha',
-        'image' => 'required|image',
         'latitude' => 'required|numeric',
         'longitude' => 'required|numeric',
       ];
@@ -199,6 +204,11 @@ class ApartmentController extends Controller
     // RETURN: torna un array con le regole specifiche per update
     public function validationRulesUpdate($array) {
       $array["availability"] = 'required|boolean';
+      $array["image"] = 'image';
       return $array;
     }
+    public function validationRulesCreate($array){
+      $array["image"] = 'required|image';
+      return $array;
+   }
 }
