@@ -112,6 +112,17 @@
             <label>Latitudine</label>
             <input type="number" step="any" class="form-control ms_latitude" name="latitude" value="">
           </div>
+          <br>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Seleziona disponibilità</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="availability">
+            <option {{ ($apartment->availability === 1) ? "selected" : ""  }}  value="1">Disponibile</option>
+            <option {{ ($apartment->availability === 0) ? "selected" : "" }} value="0">Non disponibile</option>
+            </select>
+          </div>
 
           <div>
             <br>

@@ -41,21 +41,8 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
       // Validiamo i dati immessi dall'utente nel form
-      $request->validate([
-        'title' => 'required|max:255',
-        'description' => 'max:3000',
-        'number_of_rooms' => 'required|min:1|max:50',
-        'number_of_beds' => 'required|min:1|max:150',
-        'number_of_bathrooms' => 'required|min:1|max:25',
-        'sqm' => 'min:10|max:1000|numeric',
-        'address' => 'required|max:500|string',
-        'city' => 'required|max:150|string|alpha',
-        'cap' => 'required|min:0|max:99999|numeric',
-        'province' => 'required|min:2|max:2|string|alpha',
-        'image' => 'required|image',
-        'latitude' => 'required|numeric',
-        'longitude' => 'required|numeric'
-      ]);
+      // regole nella funzione validation Rules
+      $request->validate($this->validationRules());
 
       // Prendo i dati dal form
       $data = $request->all();
@@ -129,9 +116,28 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+      // Validiamo i dati immessi dall'utente nel form
+      // regole nella funzione validation Rules
+      $request->validate($this->validationRulesUpdate($this->validationRules()));
+
+      // Prendo i dati cambiati dal form
+      $data = $request->all();
+
+      // Verifichiamo che siano presenti dei tags
+      // se ci sono li associamo al nuovo appartamento
+      if (isset($data['tags'])) {
+        $apartment->tags()->sync($data['tags']);
+      } else {
+        $apartment->tags()->detach();
+      }
+
+      // Update dei dati dell'apartamento
+      $apartment->update($data);
+
+      // todo: Return redirect show
+
     }
 
     /**
@@ -143,5 +149,33 @@ class ApartmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Funzione con le regole di validazione
+    // RETURN: torna un array con le regole
+    public function validationRules() {
+      return  [
+        'title' => 'required|max:255',
+        'description' => 'max:3000',
+        'number_of_rooms' => 'required|min:1|max:50',
+        'number_of_beds' => 'required|min:1|max:150',
+        'number_of_bathrooms' => 'required|min:1|max:25',
+        'sqm' => 'min:10|max:1000|numeric',
+        'address' => 'required|max:500|string',
+        'city' => 'required|max:150|string|alpha',
+        'cap' => 'required|min:0|max:99999|numeric',
+        'province' => 'required|min:2|max:2|string|alpha',
+        'image' => 'required|image',
+        'latitude' => 'required|numeric',
+        'longitude' => 'required|numeric',
+      ];
+    }
+
+    // Funzione con le regole di validazione specifiche per update
+    // PARAMETRO: accetta un array con le regole generali
+    // RETURN: torna un array con le regole specifiche per update
+    public function validationRulesUpdate($array) {
+      $array["availability"] = 'required|boolean';
+      return $array;
     }
 }
