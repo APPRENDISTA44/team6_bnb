@@ -48156,7 +48156,9 @@ var $ = __webpack_require__(/*! Jquery */ "./node_modules/Jquery/dist/jquery.js"
 var countryCode = "IT";
 var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
 var url = "https://api.tomtom.com/search/2/search/";
-var format = ".json";
+var format = ".json"; // Messaggio di Errore
+
+var errorMessage = 'I campi sono sbagliati';
 
 /***/ }),
 
@@ -48213,8 +48215,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  var errorMessage = 'I campi sono sbagliati'; //evento click per la creazione di coordinate
-
+  //evento click per la creazione di coordinate
   $('#ms_form_create #ms_coordinate_generator').on('click', function () {
     $("#ms_form_create .ms_error").addClass('d-none').text(errorMessage); //cattura dati indirizzo dal form
 
@@ -48237,7 +48238,7 @@ $(document).ready(function () {
         },
         success: function success(data) {
           if (data.results.length === 0) {
-            errorMessage = "Alcuni campi sono scorretti per coordinate";
+            errorMessage = "Alcuni campi sono errati per coordinate";
             $("#ms_form_create .ms_error").removeClass('d-none').text(errorMessage);
           } else {
             //inseriamo i dati di latitudine e longitudine recuperati nel form
@@ -48286,15 +48287,37 @@ $(document).ready(function () {
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function () {
     //cattura dati indirizzo dal form
-    var inputSearch = $('#ms_homepage input').val().trim();
-    console.log(inputSearch); // // chiamata ajax per recuperare coordinate della search
-    // $.ajax({
-    //
-    //   // controllo campo
-    //
-    //
-    //
-    // });
+    var inputSearch = $('#ms_homepage input').val().trim(); // // chiamata ajax per recuperare coordinate della search
+    // Controllo validazione campi
+    // Se
+
+    if (inputSearch == "" || inputSearch.length < 2) {
+      console.log('Errore');
+    } else {
+      // Se tutti controlli sono superati, faccio la chiamata AJAX
+      var encodedInputSearch = encodeURI(inputSearch);
+      console.log(encodedInputSearch); //
+
+      $.ajax({
+        url: url + encodedInputSearch + format,
+        method: "GET",
+        data: {
+          "countrySet": countryCode,
+          "key": api_key
+        },
+        // Se la chiamata ha successo
+        success: function success(data) {
+          if (data.results.length === 0) {
+            errorMessage = "La ricerca non ha prodotto risultati";
+            alert(errorMessage);
+          } else {}
+        },
+        // Se la chiamata fallisce
+        error: function error() {
+          alert('Si è verificato un errore');
+        }
+      });
+    }
   });
 });
 
@@ -48318,11 +48341,11 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\partials\indexhomepage.js */"./resources/js/partials/indexhomepage.js");
-__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\partials\createapartment.js */"./resources/js/partials/createapartment.js");
-__webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\js\partials\editapartment.js */"./resources/js/partials/editapartment.js");
-module.exports = __webpack_require__(/*! C:\Users\felin\Desktop\Boolean\mamp-htdocs\team6_bnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\aliou\Desktop\Boolean\repo\team6_bnb\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\aliou\Desktop\Boolean\repo\team6_bnb\resources\js\partials\indexhomepage.js */"./resources/js/partials/indexhomepage.js");
+__webpack_require__(/*! C:\Users\aliou\Desktop\Boolean\repo\team6_bnb\resources\js\partials\createapartment.js */"./resources/js/partials/createapartment.js");
+__webpack_require__(/*! C:\Users\aliou\Desktop\Boolean\repo\team6_bnb\resources\js\partials\editapartment.js */"./resources/js/partials/editapartment.js");
+module.exports = __webpack_require__(/*! C:\Users\aliou\Desktop\Boolean\repo\team6_bnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

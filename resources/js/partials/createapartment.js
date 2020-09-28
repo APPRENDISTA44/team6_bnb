@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  var errorMessage = 'I campi sono sbagliati';
-
   //evento click per la creazione di coordinate
   $('#ms_form_create #ms_coordinate_generator').on('click',function(){
     $("#ms_form_create .ms_error").addClass('d-none').text(errorMessage);
@@ -14,7 +12,7 @@ $(document).ready(function(){
 
     //controllo campi
     if ( (address !== "") && (city !== "")
-      && (cap !== "") && (province.length === 2) && (cap.length === 5)) {
+      && (cap !== "") && (province.length === 2) && (cap.length === 5) ) {
 
         //concateno e codifico le variabili in URI
         var fullAddress = address + " " + city + " " + cap + " " + province;
@@ -31,7 +29,7 @@ $(document).ready(function(){
           success : function(data){
 
             if (data.results.length === 0) {
-              errorMessage = "Alcuni campi sono scorretti per coordinate";
+              errorMessage = "Alcuni campi sono errati per coordinate";
               $("#ms_form_create .ms_error").removeClass('d-none').text(errorMessage);
             }else {
               //inseriamo i dati di latitudine e longitudine recuperati nel form
