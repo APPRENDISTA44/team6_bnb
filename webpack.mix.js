@@ -16,7 +16,7 @@ const mix = require('laravel-mix');
 
     mix.js([
         'resources/js/app.js',
-        'resources/js/partials/homepage.js',
+        'resources/js/partials/indexhomepage.js',
         'resources/js/partials/createapartment.js',
         'resources/js/partials/editapartment.js'
     ],  'public/js')

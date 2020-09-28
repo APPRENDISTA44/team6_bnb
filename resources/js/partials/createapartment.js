@@ -1,17 +1,10 @@
 $(document).ready(function(){
 
-  // variabili per chiamata ajax
-  var countryCode = "IT";
-  var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
-  var url = "https://api.tomtom.com/search/2/search/";
-  var format = ".json";
-
   var errorMessage = 'I campi sono sbagliati';
 
   //evento click per la creazione di coordinate
   $('#ms_form_create #ms_coordinate_generator').on('click',function(){
     $("#ms_form_create .ms_error").addClass('d-none').text(errorMessage);
-
 
     //cattura dati indirizzo dal form
     var address = $('#ms_form_create .ms_address input').val().trim();

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')
 ->namespace('Admin')
@@ -28,3 +28,5 @@ Route::prefix('admin')
 ->group(function(){
   Route::resource('apartment','ApartmentController');
 });
+
+Route::get('/home', 'IndexController@index')->name('home');
