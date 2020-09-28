@@ -29,4 +29,8 @@ Route::prefix('admin')
   Route::resource('apartment','ApartmentController');
 });
 
+// Routes per index controller
 Route::get('/home', 'IndexController@index')->name('home');
+
+// Route per Ajax
+Route::post('/home', 'IndexController@coordinatesHandler');

@@ -1,4 +1,12 @@
 $(document).ready(function(){
+  // variabili per chiamata ajax
+  var countryCode = "IT";
+  var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
+  var url = "https://api.tomtom.com/search/2/search/";
+  var format = ".json";
+
+  // Messaggio di Errore
+  var errorMessage = 'I campi sono sbagliati';
 
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function(){
@@ -26,7 +34,7 @@ $(document).ready(function(){
       // Se tutti controlli sono superati, faccio la chiamata AJAX
       var encodedInputSearch = encodeURI(inputSearch);
 
-      console.log(encodedInputSearch);
+
       //
       $.ajax({
 
@@ -41,18 +49,40 @@ $(document).ready(function(){
         success : function(data){
 
           if (data.results.length === 0) {
-
             errorMessage = "La ricerca non ha prodotto risultati";
-
             alert(errorMessage)
           }else {
 
+           var coordinates = data.results[0].position;
 
+           // Faccio latra chiamata AJAX per passare i dati al controller
+           $.ajax({
+             url: "/home",
+             type:"POST",
+             data: {
+               latitude: coordinates.lat,
+               longitude: coordinates.lon,
+             },
+
+             // Se la chiamata ha successo
+
+             success:function(response){
+              console.log(response);
+            },
+
+            // Se ci sono errori
+            error: function(){
+              alert('Si è verificato un errore nei dati');
+            }
+
+
+
+           });
           }
         },
         // Se la chiamata fallisce
         error : function(){
-          alert('Si è verificato un errore');
+          alert('Si è verificato un errore nella chiamata principale');
         }
 
 
