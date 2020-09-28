@@ -66,7 +66,6 @@ $(document).ready(function(){
 
              success:function(response){
               console.log(response);
-              console.log('ciao');
             },
 
             // Se ci sono errori
