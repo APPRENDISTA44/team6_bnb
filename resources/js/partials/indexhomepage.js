@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var Handlebars = require("handlebars");
   // variabili per chiamata ajax
   var countryCode = "IT";
   var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
@@ -28,7 +29,8 @@ $(document).ready(function(){
       var encodedInputSearch = encodeURI(inputSearch);
 
 
-      //
+      //Chiamata ajax per ottenere coordinate da indirizzo
+      //scritto dall'utente
       $.ajax({
 
         url: url + encodedInputSearch + format,
@@ -60,6 +62,7 @@ $(document).ready(function(){
              data: {
                latitude: coordinates.lat,
                longitude: coordinates.lon,
+               distance: 20
              },
 
              // Se la chiamata ha successo
@@ -73,8 +76,6 @@ $(document).ready(function(){
               alert('Si è verificato un errore nei dati');
             }
 
-
-
            });
           }
         },
@@ -83,23 +84,10 @@ $(document).ready(function(){
           alert('Si è verificato un errore nella chiamata principale');
         }
 
-
-
-
-
-
       });
 
 
-
-
-
-
-
     }
-
-
-
 
   });
 

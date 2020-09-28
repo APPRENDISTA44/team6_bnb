@@ -34,6 +34,3 @@ Route::get('/home', 'IndexController@index')->name('home');
 
 // Route per Ajax
 Route::post('/home', 'IndexController@coordinatesHandler');
-
-//test
-// Route::get('/hometest', 'IndexController@test')->name('test');

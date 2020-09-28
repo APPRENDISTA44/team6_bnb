@@ -11,50 +11,41 @@ class IndexController extends Controller
       return view('guest.index');
     }
 
+    //funzione per gestire coordinate e dati inviati da un utente
+    //PARAMETRO: $request sono i dati che ricevo da una chiamata ajax
+    //RETURN: Json coi dati recuperati dal db e filtrati da mostrare
     public function coordinatesHandler(Request $request){
 
       $data = $request->all();
-      $apartments = Apartment::all();
       $latitude = $data['latitude'];
       $longitude = $data['longitude'];
+      $distance_research = $data['distance'];
+      //formatto cordinate per la funzione points_distance
       $user_coordinates = $latitude . ',' . $longitude;
+      //inizializzo l'array dove salvero i dati da mostrare
       $array_results = [];
 
-
-      // for ($i=0; $i < count($apartments) ; $i++) {
-      //   $apartment_latitude = $apartments[$i]->latitude;
-      //   $apartment_longitude = $apartments[$i]->longitude;
-      //   $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
-      //   $distance = $this->points_distance("48.857924,2.294026","41.890164,12.492346");
-      //
-      //   $array_results[] = $distance;
-      // }
-
+      //recupero gli appartamenti nel db
+      $apartments = Apartment::all();
+      //ciclo per filtrare gli appartamenti
       foreach ($apartments as $apartment) {
-
         $apartment_latitude = $apartment->latitude;
         $apartment_longitude = $apartment->longitude;
         $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
         $distance = $this->points_distance($user_coordinates,$apartment_coordinates);
-        $array_results[] = $distance;
-        // if ( ($this->points_distance($apartment_coordinates,$user_coordinates)) ) {
-        //   $array_results[] = $apartment;
-        // }
+        if ( $distance <= $distance_research ) {
+          $array_results[] = $apartment;
+        }
       }
 
-
-      // $distance = $this->points_distance("48.857924,2.294026","41.890164,12.492346");
-
-      // ritorno in formato json informazioni per debug
+      // ritorno in formato json l'array dei risultati
       return response()->json(['success'=>$array_results]);
     }
 
-    // public function test(){
-    //
-    // }
 
-
-
+    //funzione per calcolare la distanza tra due punti
+    //PARAMETRI: due stringhe contenenti entrambe latitudine e longitudine separate da virgola
+    //RETURN: un float la distanza tra i due punti
     public function points_distance ( $coordinate_a, $coordinate_b ) {
 
       $RAGGIO_QUADRATICO_MEDIO = 6372.795477598;
