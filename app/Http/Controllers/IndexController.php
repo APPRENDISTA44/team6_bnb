@@ -11,11 +11,11 @@ class IndexController extends Controller
       return view('guest.index');
     }
 
-    public function coordinatesHandler(){
-      
+    public function coordinatesHandler(Request $request){
 
-
-
+      $data = $request->all();
+        #create or update your data here
+        return response()->json(['success'=>'Ajax request submitted successfully']);
 
     }
 }

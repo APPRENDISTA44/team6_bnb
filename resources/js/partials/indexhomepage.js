@@ -22,13 +22,6 @@ $(document).ready(function(){
 
       console.log('Errore');
 
-
-
-
-
-
-
-
     } else {
 
       // Se tutti controlli sono superati, faccio la chiamata AJAX
@@ -54,11 +47,16 @@ $(document).ready(function(){
           }else {
 
            var coordinates = data.results[0].position;
+           console.log(coordinates);
 
            // Faccio latra chiamata AJAX per passare i dati al controller
            $.ajax({
+             // csfr token per chiamata ajax
+             headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             },
              url: "/home",
-             type:"POST",
+             method:"POST",
              data: {
                latitude: coordinates.lat,
                longitude: coordinates.lon,
@@ -68,6 +66,7 @@ $(document).ready(function(){
 
              success:function(response){
               console.log(response);
+              console.log('ciao');
             },
 
             // Se ci sono errori
