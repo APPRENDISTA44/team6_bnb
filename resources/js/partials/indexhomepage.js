@@ -9,6 +9,17 @@ $(document).ready(function(){
   // Messaggio di Errore
   var errorMessage = 'I campi sono sbagliati';
 
+  // setto valori di default degli Slider
+    $('#formControlRangeRooms').val('1');
+    $('#formControlRangeBeds').val('1');
+    $('#formControlRangeKm').val('20');
+
+    //creo variabili per la ricerca
+    var rangeRooms = $('#formControlRangeRooms').val();
+    var rangeBeds = $('#formControlRangeBeds').val();
+    var rangeKm = $('#formControlRangeKm').val();
+
+
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function(){
 
@@ -52,31 +63,7 @@ $(document).ready(function(){
            console.log(coordinates);
 
            // Faccio latra chiamata AJAX per passare i dati al controller
-           $.ajax({
-             // csfr token per chiamata ajax
-             headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-             },
-             url: "/home",
-             method:"POST",
-             data: {
-               latitude: coordinates.lat,
-               longitude: coordinates.lon,
-               distance: 20
-             },
-
-             // Se la chiamata ha successo
-
-             success:function(response){
-              console.log(response);
-            },
-
-            // Se ci sono errori
-            error: function(){
-              alert('Si è verificato un errore nei dati');
-            }
-
-           });
+            sentDataToIndex(coordinates,rangeRooms,rangeBeds,rangeKm);
           }
         },
         // Se la chiamata fallisce
@@ -92,17 +79,33 @@ $(document).ready(function(){
   });
   // fine evento click sul search
 
+
+
+
   //eventi di modifica dati appartamenti
+
   $('#formControlRangeRooms').click(function() {
-    $('.ms_range_rooms').text( $('#formControlRangeRooms').val() );
+    rangeRooms = $('#formControlRangeRooms').val();
+    $('.ms_range_rooms').text( rangeRooms );
+    // Faccio latra chiamata AJAX per passare i dati al controller
+     sentDataToIndex(coordinates,rangeRooms,rangeBeds,rangeKm);
+
+
   });
 
   $('#formControlRangeBeds').click(function() {
-    $('.ms_range_beds').text( $('#formControlRangeBeds').val() );
+    rangeBeds = $('#formControlRangeBeds').val();
+    $('.ms_range_beds').text( rangeBeds );
+    // Faccio latra chiamata AJAX per passare i dati al controller
+     sentDataToIndex(coordinates,rangeRooms,rangeBeds,rangeKm);
   });
 
   $('#formControlRangeKm').click(function() {
-    $('.ms_range_km').text( $('#formControlRangeKm').val() );
+    rangeKm = $('#formControlRangeKm').val();
+    $('.ms_range_km').text( rangeKm );
+    // Faccio latra chiamata AJAX per passare i dati al controller
+     sentDataToIndex(coordinates,rangeRooms,rangeBeds,rangeKm);
+
   });
 
 
@@ -111,6 +114,39 @@ $(document).ready(function(){
   $(".ms_checkbox").click(function() {
     $(this).toggleClass('ms_checked');
 });
+
+  //funzione per chiamata ajax che ritorna json
+function sentDataToIndex(coordinates,rangeRooms,rangeBeds,rangeKm) {
+  // Faccio latra chiamata AJAX per passare i dati al controller
+  $.ajax({
+    // csfr token per chiamata ajax
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "/home",
+    method:"POST",
+    data: {
+      latitude: coordinates.lat,
+      longitude: coordinates.lon,
+      distance: rangeKm,
+      rangeRooms: rangeRooms,
+      rangeBeds: rangeBeds,
+      rangeKm: rangeKm
+    },
+
+    // Se la chiamata ha successo
+
+    success:function(response){
+     console.log(response);
+   },
+
+   // Se ci sono errori
+   error: function(){
+     alert('Si è verificato un errore nei dati');
+   }
+
+  });
+}
 
 
 });
