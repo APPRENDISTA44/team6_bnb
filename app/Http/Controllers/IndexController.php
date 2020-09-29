@@ -34,14 +34,22 @@ class IndexController extends Controller
         $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
         $distance = $this->points_distance($user_coordinates,$apartment_coordinates);
         if ( $distance <= $distance_research ) {
-          $array_results[] = $apartment;
+          $array_results[] = [
+            'distance' => $distance,
+            'apartment' => $apartment
+          ];
         }
       }
+      
+      //ordino l'array basandomi sulla distanza dal punto di interesse, in ordine crescente
+      usort($array_results, function($a, $b) {
+        return $a['distance'] <=> $b['distance'];
+      });
+
 
       // ritorno in formato json l'array dei risultati
       return response()->json(['success'=>$array_results]);
     }
-
 
     //funzione per calcolare la distanza tra due punti
     //PARAMETRI: due stringhe contenenti entrambe latitudine e longitudine separate da virgola
@@ -61,5 +69,8 @@ class IndexController extends Controller
             (cos($radLatA) * cos($radLatB) * cos($phi))
       );
       return $P * $RAGGIO_QUADRATICO_MEDIO;
-}
+    }
+
+
+
 }
