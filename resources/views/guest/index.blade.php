@@ -41,7 +41,22 @@
   @endif
 
 
+  <div class="ms_apartment_container">
 
+  </div>
 </div>
+
+<script id="ms_apartment_template" type="text/x-handlebars-template">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>@{{title}}</h1>
+      </div>
+    </div>
+
+  </div>
+</script>
+
+
 
 @endsection

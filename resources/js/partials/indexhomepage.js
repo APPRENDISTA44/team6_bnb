@@ -148,7 +148,18 @@ function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
            // Se la chiamata ha successo
 
            success:function(response){
-            console.log(response);
+            console.log(response.success);
+            //svuoto container con i risultati degli appartamenti
+            $('.ms_apartment_container').html('');
+            //scrivo dentro al template con handlebars
+            var source = $('#ms_apartment_template').html();
+            var template = Handlebars.compile(source);
+            for (var i = 0; i < response.success.length; i++) {
+              var singleApartment = response.success[i].apartment;
+              var html = template(singleApartment);
+              $('.ms_apartment_container').append(html);
+            }
+
           },
 
           // Se ci sono errori
