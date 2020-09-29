@@ -23,6 +23,8 @@ class IndexController extends Controller
       $data = $request->all();
       $latitude = $data['latitude'];
       $longitude = $data['longitude'];
+      $number_of_rooms = $data['rangeRooms'];
+      $number_of_beds = $data['rangeBeds'];
       $distance_research = $data['distance'];
       //formatto cordinate per la funzione points_distance
       $user_coordinates = $latitude . ',' . $longitude;
@@ -33,15 +35,20 @@ class IndexController extends Controller
       $apartments = Apartment::all();
       //ciclo per filtrare gli appartamenti
       foreach ($apartments as $apartment) {
+        $apartment_rooms = $apartment->number_of_rooms;
+        $apartment_beds = $apartment->number_of_beds;
         $apartment_latitude = $apartment->latitude;
         $apartment_longitude = $apartment->longitude;
         $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
         $distance = $this->points_distance($user_coordinates,$apartment_coordinates);
         if ( $distance <= $distance_research ) {
-          $array_results[] = [
-            'distance' => $distance,
-            'apartment' => $apartment
-          ];
+          if ( ($apartment_rooms >= $number_of_rooms) && ($apartment_beds >= $number_of_beds) ) {
+            $array_results[] = [
+              'distance' => $distance,
+              'apartment' => $apartment
+            ];
+          }
+
         }
       }
 
