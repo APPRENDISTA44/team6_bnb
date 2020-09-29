@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Apartment;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     // INDEX
     public function index() {
-      return view('guest.index');
+      //recupero gli appartamenti nel db
+      $apartments = Apartment::all();
+      $tags = Tag::all();
+      return view('guest.index', compact('apartments','tags'));
     }
 
     //funzione per gestire coordinate e dati inviati da un utente
@@ -40,7 +44,7 @@ class IndexController extends Controller
           ];
         }
       }
-      
+
       //ordino l'array basandomi sulla distanza dal punto di interesse, in ordine crescente
       usort($array_results, function($a, $b) {
         return $a['distance'] <=> $b['distance'];

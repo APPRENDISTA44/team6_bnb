@@ -90,6 +90,27 @@ $(document).ready(function(){
     }
 
   });
+  // fine evento click sul search
+
+  //eventi di modifica dati appartamenti
+  $('#formControlRangeRooms').click(function() {
+    $('.ms_range_rooms').text( $('#formControlRangeRooms').val() );
+  });
+
+  $('#formControlRangeBeds').click(function() {
+    $('.ms_range_beds').text( $('#formControlRangeBeds').val() );
+  });
+
+  $('#formControlRangeKm').click(function() {
+    $('.ms_range_km').text( $('#formControlRangeKm').val() );
+  });
+
+
+  //evento click su checkbox
+  //aggiungiamo classe ms_checked se selezionato
+  $(".ms_checkbox").click(function() {
+    $(this).toggleClass('ms_checked');
+});
 
 
 });
