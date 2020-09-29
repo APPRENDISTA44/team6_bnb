@@ -18,13 +18,15 @@ $(document).ready(function(){
     var rangeRooms = $('#formControlRangeRooms').val();
     var rangeBeds = $('#formControlRangeBeds').val();
     var rangeKm = $('#formControlRangeKm').val();
+    //creo array di supporto dove salveremo gli id dei tag selezionati
+    var arrayTags = [];
 
 
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function(){
 
     // Faccio latra chiamata AJAX per passare i dati al controller
-     sentDataToIndex(rangeRooms,rangeBeds,rangeKm);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
 
   });
   // fine evento click sul search
@@ -39,7 +41,7 @@ $(document).ready(function(){
     rangeRooms = $('#formControlRangeRooms').val();
     $('.ms_range_rooms').text( rangeRooms );
     // Faccio latra chiamata AJAX per passare i dati al controller
-     sentDataToIndex(rangeRooms,rangeBeds,rangeKm);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
 
 
   });
@@ -51,7 +53,7 @@ $(document).ready(function(){
 
     //cattura dati indirizzo dal form
     var inputSearch = $('#ms_homepage input').val().trim();
-    sentDataToIndex(rangeRooms,rangeBeds,rangeKm);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
 
   });
 
@@ -62,7 +64,7 @@ $(document).ready(function(){
     rangeKm = $('#formControlRangeKm').val();
     $('.ms_range_km').text( rangeKm );
     // Faccio latra chiamata AJAX per passare i dati al controller
-     sentDataToIndex(rangeRooms,rangeBeds,rangeKm);
+     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
 
   });
 
@@ -70,11 +72,28 @@ $(document).ready(function(){
   //evento click su checkbox
   //aggiungiamo classe ms_checked se selezionato
   $(".ms_checkbox").click(function() {
-    $(this).toggleClass('ms_checked');
+    if ($(this).hasClass('ms_checked')) {
+      $(this).removeClass('ms_checked');
+
+      //rimuovo elementi da array quando deselezionati
+      var index = arrayTags.indexOf($(this).val());
+      if (index > -1) {
+        arrayTags.splice(index, 1);
+      }
+      // aggiungo elementi ad array quando selezionati
+    }else {
+      $(this).addClass('ms_checked');
+      arrayTags.push($(this).val())
+    }
+    console.log(arrayTags);
+    // Faccio latra chiamata AJAX per passare i dati al controller
+     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+
+
 });
 
   //funzione per chiamata ajax che ritorna json
-function sentDataToIndex(rangeRooms,rangeBeds,rangeKm) {
+function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
 
   //cattura dati indirizzo dal form
   var inputSearch = $('#ms_homepage input').val().trim();
@@ -122,7 +141,8 @@ function sentDataToIndex(rangeRooms,rangeBeds,rangeKm) {
              distance: rangeKm,
              rangeRooms: rangeRooms,
              rangeBeds: rangeBeds,
-             rangeKm: rangeKm
+             rangeKm: rangeKm,
+             arrayTags: arrayTags
            },
 
            // Se la chiamata ha successo

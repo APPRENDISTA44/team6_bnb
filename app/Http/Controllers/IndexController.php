@@ -25,6 +25,11 @@ class IndexController extends Controller
       $longitude = $data['longitude'];
       $number_of_rooms = $data['rangeRooms'];
       $number_of_beds = $data['rangeBeds'];
+      if (!empty($data['arrayTags'])) {
+        $array_tags = $data['arrayTags'];
+      }else {
+        $array_tags = [];
+      }
       $distance_research = $data['distance'];
       //formatto cordinate per la funzione points_distance
       $user_coordinates = $latitude . ',' . $longitude;
@@ -41,14 +46,23 @@ class IndexController extends Controller
         $apartment_longitude = $apartment->longitude;
         $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
         $distance = $this->points_distance($user_coordinates,$apartment_coordinates);
+        //se la distanza dell'appartamento è minore di quella settata
         if ( $distance <= $distance_research ) {
+          //se il numero di stanze e il numero dei letti sono maggiori di quelli settati
           if ( ($apartment_rooms >= $number_of_rooms) && ($apartment_beds >= $number_of_beds) ) {
-            $array_results[] = [
-              'distance' => $distance,
-              'apartment' => $apartment
-            ];
-          }
+            //se i tags selezionati sono presenti
 
+            if (empty($array_tags)) {
+              //mostro l'appartamento
+              $array_results[] = [
+                'distance' => $distance,
+                'apartment' => $apartment
+              ];
+            }else {
+              
+            }
+
+          }
         }
       }
 
