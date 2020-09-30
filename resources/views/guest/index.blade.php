@@ -57,15 +57,13 @@
         <h3>@{{city}} - @{{province}}</h3>
         </div>
 
-        <!-- Collegamento a dettagli -->
-
-
         <!-- Immagine -->
         <div class="apartment_image">
         <img src="{{asset('storage') . "/" }}@{{image}}" alt="@{{title}}">
         </div>
-        <h3>@{{id}}</h3>
 
+        <!-- Collegamento a dettagli -->
+        
         @if (Auth::check())
           <a href="admin/apartment/@{{id}}">Vedi dettagli</a>
         @else

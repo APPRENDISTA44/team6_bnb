@@ -122,6 +122,7 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     // SHOW PER OSPITI
     public function show($id){
       $apartment = Apartment::find($id);
       return view("guest.show", compact("apartment"));

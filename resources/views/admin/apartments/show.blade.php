@@ -6,6 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      {{-- Nome utente attualmente loggato --}}
       <h1>Ciao {{$apartment->user->name}}</h1>
       {{-- Titolo --}}
       <h2>Titolo: {{$apartment->title}}</h2>
