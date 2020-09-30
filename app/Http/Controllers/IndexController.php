@@ -115,5 +115,18 @@ class IndexController extends Controller
     }
 
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show($id){
+      $apartment = Apartment::find($id);
+      return view("guest.show", compact("apartment"));
+    }
+
+
 
 }

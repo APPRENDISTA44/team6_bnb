@@ -111,7 +111,7 @@ class ApartmentController extends Controller
       // Altrimenti, gli mostro quello degli ospiti
       } else {
 
-        return view("admin.guest.show", compact("apartment"));
+        return view("guest.show", compact("apartment"));
       }
     }
 

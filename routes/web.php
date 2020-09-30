@@ -32,5 +32,9 @@ Route::prefix('admin')
 // Routes per index controller
 Route::get('/home', 'IndexController@index')->name('home');
 
+// Routes per show controller
+Route::get('/guest/apartment/{id}', 'IndexController@show')->name('guest.show');
+
+
 // Route per Ajax
 Route::post('/home', 'IndexController@coordinatesHandler');

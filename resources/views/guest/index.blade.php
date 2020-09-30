@@ -62,10 +62,15 @@
 
         <!-- Immagine -->
         <div class="apartment_image">
-        <img src="{{asset('storage') . "/" }}@{{'image'}}" alt="@{{title}}">
+        <img src="{{asset('storage') . "/" }}@{{image}}" alt="@{{title}}">
         </div>
+        <h3>@{{id}}</h3>
 
-
+        @if (Auth::check())
+          <a href="admin/apartment/@{{id}}">Vedi dettagli</a>
+        @else
+          <a href="guest/apartment/@{{id}}">Vedi dettagli</a>
+        @endif
 
 
       </div>
@@ -75,7 +80,6 @@
 </script>
 
 
-{{-- <a href="{{route('admin.apartments.show', @{{'id'}}) }}">Vedi dettagli</a> --}}
 
 
 
