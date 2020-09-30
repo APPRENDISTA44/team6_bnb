@@ -50,12 +50,32 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <!-- Titolo -->
         <h1>@{{title}}</h1>
+        <!-- Inidirzzo -->
+        <div class="address">
+        <h3>@{{city}} - @{{province}}</h3>
+        </div>
+
+        <!-- Collegamento a dettagli -->
+
+
+        <!-- Immagine -->
+        <div class="apartment_image">
+        <img src="{{asset('storage') . "/" }}@{{'image'}}" alt="@{{title}}">
+        </div>
+
+
+
+
       </div>
     </div>
 
   </div>
 </script>
+
+
+{{-- <a href="{{route('admin.apartments.show', @{{'id'}}) }}">Vedi dettagli</a> --}}
 
 
 

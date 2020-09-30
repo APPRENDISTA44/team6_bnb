@@ -19,7 +19,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -95,7 +95,24 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+      $apartment = Apartment::find($id);
+
+      // trovo l'id utente loggato
+      $user_id = Auth::id();
+
+      // Se l'utente corrisponde a quello loggato
+
+      if ($user_id === $apartment->user_id) {
+
+
+        // Gli mostro i dettagli del suo appartamento
+        return view("admin.apartments.show", compact("apartment"));
+
+      // Altrimenti, gli mostro quello degli ospiti
+      } else {
+
+        return view("admin.guest.show", compact("apartment"));
+      }
     }
 
     /**
