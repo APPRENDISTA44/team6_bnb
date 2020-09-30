@@ -40,6 +40,9 @@ class IndexController extends Controller
       $apartments = Apartment::all();
       //ciclo per filtrare gli appartamenti
       foreach ($apartments as $apartment) {
+        $array_apartment_tag = [];
+
+
         $apartment_rooms = $apartment->number_of_rooms;
         $apartment_beds = $apartment->number_of_beds;
         $apartment_latitude = $apartment->latitude;
@@ -50,22 +53,37 @@ class IndexController extends Controller
         if ( $distance <= $distance_research ) {
           //se il numero di stanze e il numero dei letti sono maggiori di quelli settati
           if ( ($apartment_rooms >= $number_of_rooms) && ($apartment_beds >= $number_of_beds) ) {
-            //se i tags selezionati sono presenti
-
+            //se non ha selezionato tags mostro tutti i risultati
             if (empty($array_tags)) {
               //mostro l'appartamento
               $array_results[] = [
                 'distance' => $distance,
                 'apartment' => $apartment
               ];
+              //altrimenti se l'utente ha selezionato dei tag
             }else {
-              
+              //creo un array di oggetti tags
+              $apartments_tags = $apartment->tags;
+              //se non è vuoto
+              if (!empty($apartments_tags)) {
+                //cicliamo su array di oggetti tags e metto l'id dei tags presenti
+                //in un array di supporto
+                foreach ($apartments_tags as $apartments_tag) {
+                  $array_apartment_tag[] = $apartments_tag->id;
+                }
+                //controllo che $array_apartment_tag contenga tutti gli elementi di $array_tags
+                if (count($array_tags) === count(array_intersect($array_tags,$array_apartment_tag))) {
+                  //mostro l'appartamento
+                  $array_results[] = [
+                    'distance' => $distance,
+                    'apartment' => $apartment
+                  ];
+                }
+              }
             }
-
           }
         }
       }
-
       //ordino l'array basandomi sulla distanza dal punto di interesse, in ordine crescente
       usort($array_results, function($a, $b) {
         return $a['distance'] <=> $b['distance'];
