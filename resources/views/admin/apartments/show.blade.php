@@ -65,11 +65,9 @@
     <script defer
     src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_KEY')}}&callback=initMap">
     </script>
-
-
     </div>
-
   </div>
+
 
 </div>
 @endsection

@@ -128,6 +128,13 @@ class IndexController extends Controller
       return view("guest.show", compact("apartment"));
     }
 
+    //gestisco l'arrivo di mail
+    public function emailHandler(Request $request){
+      // Prendo i dati dal form
+      $data = $request->all();
+      dd($data);
+    }
+
 
 
 }

@@ -141,7 +141,7 @@
           <!-- salva -->
           <div>
             <br>
-            <input type="submit" class="btn btn-primary" name="" value="salva post">
+            <input type="submit" class="btn btn-primary" name="" value="salva appartamento">
           </div>
 
         </form>

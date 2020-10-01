@@ -38,3 +38,6 @@ Route::get('/guest/apartment/{id}', 'IndexController@show')->name('guest.show');
 
 // Route per Ajax
 Route::post('/home', 'IndexController@coordinatesHandler');
+
+// Route per Email
+Route::post('/email','IndexController@emailHandler')->name('email');

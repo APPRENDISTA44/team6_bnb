@@ -6,7 +6,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Ciao ospite</h1>
+      @if (Auth::check())
+        <h1>Ciao {{$user->name}}</h1>
+      @else
+        <h1>Ciao ospite</h1>
+      @endif
+
       {{-- Titolo --}}
       <h2>Titolo: {{$apartment->title}}</h2>
       {{-- Descrizione --}}
@@ -69,6 +74,43 @@
     </div>
 
   </div>
+
+  {{-- se l'utente è loggato prendo la sua mail --}}
+  @if (Auth::check())
+    <div class="row">
+      <div class="col">
+        <form action="{{route('admin.apartment.store')}}" method="post">
+          <p>{{$user->email}}</p>
+          <textarea name="name" rows="8" cols="80"></textarea>
+        </form>
+      </div>
+    </div>
+    {{-- altrimenti mostro input dove inserire la mail --}}
+  @else
+    <div class="row">
+      <div class="col">
+        {{-- stampo messaggi di errore --}}
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <form action="{{route('email')}}" method="post">
+          @csrf
+          @method('POST')
+          <label>Inserisci la tua mail</label>
+          <input type="email" class="form-control" name="sender" value="{{old('sender')}}" maxlength="255">
+          <textarea name="text" rows="8" cols="80">{{old('text')}}</textarea>
+          <input type="submit" class="btn btn-primary" name="" value="manda email">
+        </form>
+      </div>
+    </div>
+  @endif
+
 
 </div>
 @endsection

@@ -95,6 +95,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
+      $user = Auth::user();
       $apartment = Apartment::find($id);
 
       // trovo l'id utente loggato
@@ -111,7 +112,7 @@ class ApartmentController extends Controller
       // Altrimenti, gli mostro quello degli ospiti
       } else {
 
-        return view("guest.show", compact("apartment"));
+        return view("guest.show", compact("apartment","user"));
       }
     }
 
