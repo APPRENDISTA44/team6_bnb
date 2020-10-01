@@ -63,7 +63,7 @@
     * The callback parameter executes the initMap() function
     -->
     <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCamGPsnxU7BzZrAKAsINUCAwh1ll8NFFc&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_KEY')}}&callback=initMap">
     </script>
 
 
