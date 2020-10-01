@@ -79,9 +79,24 @@
   @if (Auth::check())
     <div class="row">
       <div class="col">
-        <form action="{{route('admin.apartment.store')}}" method="post">
+        {{-- stampo messaggi di errore --}}
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
+        <form action="{{route('email',$apartment)}}" method="post">
+          @csrf
+          @method('POST')
+          <label>Inserisci la tua mail</label>
           <p>{{$user->email}}</p>
-          <textarea name="name" rows="8" cols="80"></textarea>
+          <textarea name="text" rows="8" cols="80">{{old('text')}}</textarea>
+          <input type="submit" class="btn btn-primary" name="" value="manda email">
         </form>
       </div>
     </div>
@@ -99,7 +114,7 @@
             </ul>
           </div>
         @endif
-        <form action="{{route('email')}}" method="post">
+        <form action="{{route('email',$apartment)}}" method="post">
           @csrf
           @method('POST')
           <label>Inserisci la tua mail</label>

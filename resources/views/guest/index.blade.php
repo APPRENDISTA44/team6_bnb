@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
+  @if (Auth::check())
+    <div class="container">
+      <a href="{{route('messages', Auth::user())}}">Vedi i tuoi messaggi</a>
+    </div>
+  @endif
+
+
+
+
   <div class="container" id="ms_homepage">
     <div class="row">
       <div class="col">
@@ -63,7 +73,7 @@
         </div>
 
         <!-- Collegamento a dettagli -->
-        
+
         @if (Auth::check())
           <a href="admin/apartment/@{{id}}">Vedi dettagli</a>
         @else

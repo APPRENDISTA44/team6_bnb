@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Apartment;
 use App\Tag;
+use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class IndexController extends Controller
 {
@@ -129,10 +132,55 @@ class IndexController extends Controller
     }
 
     //gestisco l'arrivo di mail
-    public function emailHandler(Request $request){
-      // Prendo i dati dal form
-      $data = $request->all();
-      dd($data);
+    public function emailHandler(Request $request, Apartment $apartment){
+
+      //se l'utente è loggato
+      if (Auth::check()) {
+
+        // Validiamo i dati immessi dall'utente nel form
+        $request->validate([
+          'text' => 'required|max:3000',
+        ]);
+          // Prendo i dati dal form
+        $data = $request->all();
+
+        $new_message = new Message();
+
+        $new_message->apartment_id = $apartment->id;
+        $new_message->text = $data['text'];
+        $user = Auth::user();
+        $new_message->sender = $user->email;
+        //altrimenti se non è loggato
+      } else {
+        // Validiamo i dati immessi dall'utente nel form
+        $request->validate([
+          'text' => 'required|max:3000',
+          'sender' => 'required|max:255|email|string'
+        ]);
+        // Prendo i dati dal form
+        $data = $request->all();
+
+        $new_message = new Message();
+
+        $new_message->apartment_id = $apartment->id;
+        $new_message->text = $data['text'];
+        $new_message->sender = $data['sender'];
+      }
+
+      $new_message->save();
+
+    }
+
+    public function messages(User $user){
+
+      $apartments = Apartment::where('user_id', $user->id)->get();
+      $messages = [];
+      foreach ($apartments as $apartment) {
+        $messages[] = Message::where('apartment_id', $apartment->id)->get();
+      }
+    
+      return view('admin.messages.messages',compact('messages'));
+
     }
 
 

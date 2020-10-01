@@ -40,4 +40,8 @@ Route::get('/guest/apartment/{id}', 'IndexController@show')->name('guest.show');
 Route::post('/home', 'IndexController@coordinatesHandler');
 
 // Route per Email
-Route::post('/email','IndexController@emailHandler')->name('email');
+Route::post('/email/{apartment}','IndexController@emailHandler')->name('email');
+
+
+// Routes per mostrare i messaggi
+Route::get('/messages/{user}', 'IndexController@messages')->name('messages');
