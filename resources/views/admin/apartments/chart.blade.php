@@ -8,17 +8,11 @@
         <canvas id="myChart" width="400" height="400"></canvas>
 
         <script>
+        var array_dates = <?php echo $array_dates; ?>;
+        var array_views = <?php echo $array_views; ?>;
 
-          var array_d=[];
-
-          for (var i = 0; i < {{count($array_dates)}}; i++) {
-
-            array_d.push({{$array_dates[i]}});
-
-          }
-
-          console.log(array_d);
-
+        console.log(array_dates);
+        console.log(array_views);
           var ctx = document.getElementById('myChart').getContext('2d');
           var myChart = new Chart(ctx, {
             type: 'bar',
@@ -26,7 +20,7 @@
               labels: array_dates,
               datasets: [{
                 label: '# of Votes',
-                data: [1,2,3,4,5,6],
+                data: array_views,
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',

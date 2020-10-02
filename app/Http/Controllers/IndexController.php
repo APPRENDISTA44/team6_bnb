@@ -173,56 +173,78 @@ class IndexController extends Controller
     }
     //gestisco i messaggi ricevuti da un utente
     public function messages(User $user){
+      // trovo l'id utente loggato
+      $user_id = Auth::id();
+      if ($user_id === $user->id) {
+        $apartments = Apartment::where('user_id', $user->id)->get();
+        $messages = [];
+        foreach ($apartments as $apartment) {
+          $messages[] = Message::where('apartment_id', $apartment->id)->get();
+        }
 
-      $apartments = Apartment::where('user_id', $user->id)->get();
-      $messages = [];
-      foreach ($apartments as $apartment) {
-        $messages[] = Message::where('apartment_id', $apartment->id)->get();
+        return view('admin.messages.messages',compact('messages'));
+      }else {
+        // se non corrisponde mostro pagina 404
+        abort(404);
       }
-
-      return view('admin.messages.messages',compact('messages'));
 
     }
 
     public function apartmentList(User $user){
-      $apartments = Apartment::where('user_id', $user->id)->get();
-      return view('admin.apartments.apartmentlist',compact('apartments'));
+      // trovo l'id utente loggato
+      $user_id = Auth::id();
+      if ($user_id === $user->id){
+        //mostro la lista dei suoi appartamenti
+        $apartments = Apartment::where('user_id', $user->id)->get();
+        return view('admin.apartments.apartmentlist',compact('apartments'));
+      }else {
+        // se non corrisponde mostro pagina 404
+        abort(404);
+      }
+
     }
 
     // visualizzo le statistiche
     public function chartHandler(Apartment $apartment){
-      // Recupero il numero di visite
-      $views = View::where('apartment_id', $apartment->id)->get();
-      // Recupero le date
-      $dates_view_group = $views->groupBy('date');
+      // trovo l'id utente loggato
+      $user_id = Auth::id();
 
-      $array_dates = [];
+      if ($apartment->user_id === $user_id) {
+        // Recupero il numero di visite
+        $views = View::where('apartment_id', $apartment->id)->get();
+        // Recupero le date
+        $dates_view_group = $views->groupBy('date');
+        $array_dates = [];
+        $array_views = [];
 
-      $array_views = [];
-      // inizializzo foreach per riempire gli array
+        // inizializzo foreach per riempire gli array
+        foreach ($dates_view_group as $date_key => $view_value ) {
+          // inserisco ogni singola data nell'array
+          $array_dates[] = $date_key;
+        }
+
+        foreach ($dates_view_group as $date_key => $view_value) {
+          //inserisco il conteggio per ogni data
+          $array_views[] = count($view_value);
+        }
 
 
-      foreach ($dates_view_group as $date_key => $view_value ) {
+        //prendo dati dei messaggi relativi all'appartamento
 
-        // inserisco ogni singola data nell'array
-        $array_dates[] = $date_key;
+        // $messages = Message::where('apartment_id', $apartment->id)->get();
+        // $dates_message_group = $messages->groupBy('created_at');
+        // dd($dates_message_group);
 
+
+
+        return view('admin.apartments.chart',compact('apartment'))
+             ->with('array_dates',json_encode($array_dates,JSON_NUMERIC_CHECK))
+             ->with('array_views',json_encode($array_views,JSON_NUMERIC_CHECK));
+      }else {
+        // se non corrisponde mostro pagina 404
+        abort(404);
       }
 
-      foreach ($dates_view_group as $date_key => $view_value) {
-
-        $array_views[] = count($view_value);
-
-
-
-      }
-      // dd($array_views);
-      // dd($dates_view_group);
-      // dd($array_dates);
-      // Ritorno gli array
-      return view('admin.apartments.chart',compact('apartment', 'array_dates', 'array_views'));
     }
-
-
 
 }

@@ -44,10 +44,10 @@ Route::post('/email/{apartment}','IndexController@emailHandler')->name('email');
 
 
 // Routes per mostrare i messaggi
-Route::get('/messages/{user}', 'IndexController@messages')->name('messages');
+Route::get('/messages/{user}', 'IndexController@messages')->name('messages')->middleware('auth');
 
 // Routes per mostrare lista di appartamenti dell'utente specifico
-Route::get('/apartment/list/{user}', 'IndexController@apartmentList')->name('admin.apartment.list');
+Route::get('/apartment/list/{user}', 'IndexController@apartmentList')->name('admin.apartment.list')->middleware('auth');
 
 // Routes per mostrare statistiche dell'appartamento dell'utente specifico
-Route::get('/apartment/chart/{apartment}', 'IndexController@chartHandler')->name('admin.apartment.chart');
+Route::get('/apartment/chart/{apartment}', 'IndexController@chartHandler')->name('admin.apartment.chart')->middleware('auth');
