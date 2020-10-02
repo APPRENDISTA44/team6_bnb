@@ -7,6 +7,7 @@ use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\View;
 
 class IndexController extends Controller
 {
@@ -188,8 +189,38 @@ class IndexController extends Controller
       return view('admin.apartments.apartmentlist',compact('apartments'));
     }
 
+    // visualizzo le statistiche
     public function chartHandler(Apartment $apartment){
-      return view('admin.apartments.chart',compact('apartment'));
+      // Recupero il numero di visite
+      $views = View::where('apartment_id', $apartment->id)->get();
+      // Recupero le date
+      $dates_view_group = $views->groupBy('date');
+
+      $array_dates = [];
+
+      $array_views = [];
+      // inizializzo foreach per riempire gli array
+
+
+      foreach ($dates_view_group as $date_key => $view_value ) {
+
+        // inserisco ogni singola data nell'array
+        $array_dates[] = $date_key;
+
+      }
+
+      foreach ($dates_view_group as $date_key => $view_value) {
+
+        $array_views[] = count($view_value);
+
+
+
+      }
+      // dd($array_views);
+      // dd($dates_view_group);
+      // dd($array_dates);
+      // Ritorno gli array
+      return view('admin.apartments.chart',compact('apartment', 'array_dates', 'array_views'));
     }
 
 
