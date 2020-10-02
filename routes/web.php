@@ -45,3 +45,9 @@ Route::post('/email/{apartment}','IndexController@emailHandler')->name('email');
 
 // Routes per mostrare i messaggi
 Route::get('/messages/{user}', 'IndexController@messages')->name('messages');
+
+// Routes per mostrare lista di appartamenti dell'utente specifico
+Route::get('/apartment/list/{user}', 'IndexController@apartmentList')->name('admin.apartment.list');
+
+// Routes per mostrare statistiche dell'appartamento dell'utente specifico
+Route::get('/apartment/chart/{apartment}', 'IndexController@chartHandler')->name('admin.apartment.chart');

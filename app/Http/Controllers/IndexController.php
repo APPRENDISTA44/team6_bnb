@@ -170,7 +170,7 @@ class IndexController extends Controller
       $new_message->save();
 
     }
-
+    //gestisco i messaggi ricevuti da un utente
     public function messages(User $user){
 
       $apartments = Apartment::where('user_id', $user->id)->get();
@@ -178,9 +178,18 @@ class IndexController extends Controller
       foreach ($apartments as $apartment) {
         $messages[] = Message::where('apartment_id', $apartment->id)->get();
       }
-    
+
       return view('admin.messages.messages',compact('messages'));
 
+    }
+
+    public function apartmentList(User $user){
+      $apartments = Apartment::where('user_id', $user->id)->get();
+      return view('admin.apartments.apartmentlist',compact('apartments'));
+    }
+
+    public function chartHandler(Apartment $apartment){
+      return view('admin.apartments.chart',compact('apartment'));
     }
 
 

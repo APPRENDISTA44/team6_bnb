@@ -4,6 +4,8 @@
   @if (Auth::check())
     <div class="container">
       <a href="{{route('messages', Auth::user())}}">Vedi i tuoi messaggi</a>
+      <a href="{{route('admin.apartment.list', Auth::user())}}">Vedi i tuoi appartamenti</a>
+
     </div>
   @endif
 
