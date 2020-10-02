@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
+  {{-- script per chart --}}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <div class="container">
     <canvas id="myChart" width="400" height="400"></canvas>
     <script>
 
       var ctx = document.getElementById('myChart').getContext('2d');
-      var Chart = require('chart.js');
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
