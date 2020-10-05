@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\View;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -129,6 +130,10 @@ class IndexController extends Controller
      // SHOW PER OSPITI
     public function show($id){
       $apartment = Apartment::find($id);
+
+      //registro l'evento di visualizzazione andando a registrarlo nel db
+      
+
       return view("guest.show", compact("apartment"));
     }
 
@@ -232,14 +237,46 @@ class IndexController extends Controller
         //prendo dati dei messaggi relativi all'appartamento
 
         // $messages = Message::where('apartment_id', $apartment->id)->get();
+        // dd($messages);
         // $dates_message_group = $messages->groupBy('created_at');
-        // dd($dates_message_group);
 
+        $messages = DB::table('messages')
+          -> select(DB::raw('DATE(created_at) as date, COUNT(id) as count'))
+          -> where('apartment_id', $apartment->id)
+          -> groupBy('date')
+          -> get();
+
+          // dd($messages);
+
+          $array_messages = [];
+
+          foreach ($messages as $message) {
+            $array_messages[] = [
+              'count' => $message->count,
+              'date' => $message->date
+            ];
+          }
+
+          $array_dates_message = [];
+          $array_counts_message = [];
+
+          foreach ($array_messages as $message) {
+
+            foreach ($message as $k => $v) {
+              if ($k === 'count') {
+                $array_counts_message[] = $v;
+              }elseif ($k === 'date') {
+                $array_dates_message[] = $v;
+              }
+            }
+          }
 
 
         return view('admin.apartments.chart',compact('apartment'))
              ->with('array_dates',json_encode($array_dates,JSON_NUMERIC_CHECK))
-             ->with('array_views',json_encode($array_views,JSON_NUMERIC_CHECK));
+             ->with('array_views',json_encode($array_views,JSON_NUMERIC_CHECK))
+             ->with('array_dates_message',json_encode($array_dates_message,JSON_NUMERIC_CHECK))
+             ->with('array_counts_message',json_encode($array_counts_message,JSON_NUMERIC_CHECK));
       }else {
         // se non corrisponde mostro pagina 404
         abort(404);

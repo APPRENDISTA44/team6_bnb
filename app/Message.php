@@ -9,7 +9,8 @@ class Message extends Model
   protected $fillable = [
     'apartment_id',
     'text',
-    'sender'
+    'sender',
+    'created_at'
   ];
 
 
