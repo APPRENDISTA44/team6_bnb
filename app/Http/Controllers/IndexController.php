@@ -132,7 +132,10 @@ class IndexController extends Controller
       $apartment = Apartment::find($id);
 
       //registro l'evento di visualizzazione andando a registrarlo nel db
-      
+      $new_view = new View();
+      $new_view->apartment_id = $id;
+
+
 
       return view("guest.show", compact("apartment"));
     }
