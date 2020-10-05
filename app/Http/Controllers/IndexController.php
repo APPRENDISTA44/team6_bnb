@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\View;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -134,8 +135,8 @@ class IndexController extends Controller
       //registro l'evento di visualizzazione andando a registrarlo nel db
       $new_view = new View();
       $new_view->apartment_id = $id;
-
-
+      $new_view->date = Carbon::now()->format('Y-m-d');
+      $new_view->save();
 
       return view("guest.show", compact("apartment"));
     }

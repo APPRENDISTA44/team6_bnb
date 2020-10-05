@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Apartment;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\View;
+
+
 
 
 
@@ -111,7 +115,11 @@ class ApartmentController extends Controller
 
       // Altrimenti, gli mostro quello degli ospiti
       } else {
-
+        //registro l'evento di visualizzazione andando a registrarlo nel db
+        $new_view = new View();
+        $new_view->apartment_id = $id;
+        $new_view->date = Carbon::now()->format('Y-m-d');
+        $new_view->save();
         return view("guest.show", compact("apartment","user"));
       }
     }
