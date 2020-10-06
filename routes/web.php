@@ -37,7 +37,12 @@ Route::get('/guest/apartment/{id}', 'IndexController@show')->name('guest.show');
 
 
 // Route per Ajax
+// Route per trovare le coordinate corrispondenti
 Route::post('/home', 'IndexController@coordinatesHandler');
+// Route per gestire la sponsorizzazione
+Route::post('/apartment/sponsor', 'IndexController@paymentHandlerPost');
+
+
 
 // Route per Email
 Route::post('/email/{apartment}','IndexController@emailHandler')->name('email');

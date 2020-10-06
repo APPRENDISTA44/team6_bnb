@@ -289,11 +289,34 @@ class IndexController extends Controller
 
     }
 
+    //ritorno la view per effettuare sponsorizzazioni
     public function paymentHandler(Apartment $apartment){
 
       $sponsors = Sponsor::all();
 
       return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
+    }
+
+
+    //gestisco i dati ricevuti del pagamento
+    public function paymentHandlerPost(Request $request){
+      $data = $request->all();
+      $apartments = Apartment::all();
+      $apartment = $apartments->find($data['idApartment']);
+
+      $date_end = Carbon::createFromFormat('d-m-Y H:i:s', '06-10-2020 16:23:00');
+      $date_start = Carbon::createFromFormat('d-m-Y H:i:s', '06-10-2020 15:23:00');
+
+
+      $apartment->sponsors()->attach($data['idSponsor'],
+        [
+          'date_end' => $date_end
+          // 'date_start' => $date_start
+        ]);
+
+      // ritorno in formato json l'array dei risultati
+      return response()->json(['success'=>$apartment]);
+
     }
 
 }

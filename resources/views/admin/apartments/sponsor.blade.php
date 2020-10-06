@@ -14,8 +14,8 @@
         {{-- Creo Form e stampo le informazioni per la sponsorizzazione --}}
         @foreach ($sponsors as $sponsor)
           <div class="ms_sponsor">
-            <input type="radio" name="price" value="{{$sponsor->price}}">
-            <label for="{{$sponsor->price}}">{{$sponsor->offer_name}}:
+            <input type="radio" name="price" value="{{$sponsor->id}}">
+            <label for="{{$sponsor->id}}">{{$sponsor->offer_name}}:
               sponsorizza per {{$sponsor->hours_duration}} ore - per € {{$sponsor->price}}
             </label>
           </div>
@@ -26,7 +26,7 @@
 
   {{-- CDN --}}
   <script src="https://js.braintreegateway.com/web/dropin/1.24.0/js/dropin.js"></script>
-  
+
   {{-- HTML --}}
   <div class="ms_sponsor">
     <div id="dropin-container"></div>
@@ -45,6 +45,34 @@
       button.addEventListener('click', function () {
         instance.requestPaymentMethod(function (err, payload) {
           // Submit payload.nonce to your server
+          if (err) {
+            console.log('Errore');
+          }else {
+
+            var idSponsor = $('input:checked').val();
+            // Faccio latra chiamata AJAX per passare i dati al controller
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              url: "/apartment/sponsor",
+              method:"POST",
+              data: {
+                idSponsor: idSponsor,
+                idApartment: {{$apartment->id}}
+              },
+              success:function(response){
+                console.log(response.success);
+              },
+              // Se ci sono errori
+              error: function(){
+                alert('Si è verificato un errore nei dati');
+              }
+            });
+
+
+          }
+
         });
       })
     });
