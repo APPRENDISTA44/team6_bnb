@@ -51,3 +51,6 @@ Route::get('/apartment/list/{user}', 'IndexController@apartmentList')->name('adm
 
 // Routes per mostrare statistiche dell'appartamento dell'utente specifico
 Route::get('/apartment/chart/{apartment}', 'IndexController@chartHandler')->name('admin.apartment.chart')->middleware('auth');
+
+// Routes per mostrare sposorizzazione dell'appartamento dell'utente specifico
+Route::get('/apartment/sponsor/{apartment}', 'IndexController@paymentHandler')->name('admin.apartment.sponsor')->middleware('auth');

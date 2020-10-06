@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\View;
+use App\Sponsor;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -286,6 +287,13 @@ class IndexController extends Controller
         abort(404);
       }
 
+    }
+
+    public function paymentHandler(Apartment $apartment){
+
+      $sponsors = Sponsor::all();
+
+      return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
     }
 
 }
