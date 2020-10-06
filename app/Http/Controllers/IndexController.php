@@ -12,6 +12,7 @@ use App\Sponsor;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+
 class IndexController extends Controller
 {
     // INDEX
@@ -291,7 +292,6 @@ class IndexController extends Controller
 
     //ritorno la view per effettuare sponsorizzazioni
     public function paymentHandler(Apartment $apartment){
-
       $sponsors = Sponsor::all();
 
       return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
@@ -302,20 +302,24 @@ class IndexController extends Controller
     public function paymentHandlerPost(Request $request){
       $data = $request->all();
       $apartments = Apartment::all();
+      $sponsors = Sponsor::all();
       $apartment = $apartments->find($data['idApartment']);
 
-      $date_end = Carbon::createFromFormat('d-m-Y H:i:s', '06-10-2020 16:23:00');
-      $date_start = Carbon::createFromFormat('d-m-Y H:i:s', '06-10-2020 15:23:00');
+      $sponsor = $sponsors->find($data['idSponsor']);
+
+      $hours = $sponsor->hours_duration;
+
+      $date_end = Carbon::now(new \DateTimeZone('Europe/Rome'));
+      $date_end->addHours($hours);
 
 
       $apartment->sponsors()->attach($data['idSponsor'],
         [
           'date_end' => $date_end
-          // 'date_start' => $date_start
         ]);
 
       // ritorno in formato json l'array dei risultati
-      return response()->json(['success'=>$apartment]);
+      return response()->json(['success'=>$date_end]);
 
     }
 
