@@ -23,9 +23,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.1",
-        "font-awesome": "^4.7.0",
-        "chart.js": "^2.9.3",
-        "handlebars": "^4.7.6"
+      "@fortawesome/fontawesome-free": "^5.15.1",
+      "font-awesome": "^4.7.0",
+       "chart.js": "^2.9.3",
+       "handlebars": "^4.7.6"
     }
 }
