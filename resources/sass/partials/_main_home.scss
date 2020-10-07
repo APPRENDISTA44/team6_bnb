@@ -76,6 +76,14 @@
   }
 }
 
+#ms_filter_search {
+  .ms_range_rooms,
+  .ms_range_beds,
+  .ms_range_km {
+    float: right;
+  }
+}
+
 // media queries
 @media screen and (max-width: 767px) {
   .ms_homepage input.form-control {

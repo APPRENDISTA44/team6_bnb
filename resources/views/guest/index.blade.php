@@ -1,16 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-  @if (Auth::check())
-    <div class="container">
-      <a href="{{route('messages', Auth::user())}}">Vedi i tuoi messaggi</a>
-      <a href="{{route('admin.apartment.list', Auth::user())}}">Vedi i tuoi appartamenti</a>
-
-    </div>
-  @endif
 
   {{-- sezione con search e immagine di sfondo --}}
-  <div class="container ms_homepage" id="ms_homepage">
+  <div class="container-fluid ms_homepage" id="ms_homepage">
     <div class="row">
       <div class="col">
         <div class="ms_background_image">
@@ -28,41 +21,91 @@
       </div>
     </div>
   </div>
+  {{-- fine sezione search e immagine di sfondo --}}
+
+{{-- link ai messaggi ed appartamenti admin --}}
+<div class="container ms_auth_links">
+  <div class="row mt-4">
+    <div class="col">
+      @if (Auth::check())
+          <div class="links float-right">
+            <a class="ms_links" href="{{route('messages', Auth::user())}}">Vedi i tuoi messaggi</a>
+            <a class="ms_links" href="{{route('admin.apartment.list', Auth::user())}}">Vedi i tuoi appartamenti</a>
+          </div>
+      @endif
+    </div>
+  </div>
+</div>
+{{-- fine sezione dei link --}}
+
 
 {{-- sezione scelta filtri --}}
-<div class="container">
-  <div class="form-group">
-     <label for="formControlRangeRooms">seleziona numero di stanze</label>
-     <input type="range" class="form-control-range" id="formControlRangeRooms" min="1" max="50">
-     <span class="ms_range_rooms"></span>
-  </div>
+<div id="ms_filter_search">
 
-  <div class="form-group">
-     <label for="formControlRangeBeds">seleziona numero di letti</label>
-     <input type="range" class="form-control-range" id="formControlRangeBeds" min="1" max="150">
-     <span class="ms_range_beds"></span>
-  </div>
+  <div class="container mt-4">
 
-  <div class="form-group">
-     <label for="formControlRangeKm">seleziona chilometri di distanza</label>
-     <input type="range" class="form-control-range" id="formControlRangeKm" min="20" max="100">
-     <span class="ms_range_km"></span>
-  </div>
+    <h3>Seleziona i servizi di tuo interesse</h3>
+    {{-- scelta servizi opzionali --}}
+      @if (!empty($tags))
 
-  @if (!empty($tags))
+        <div class="ms_tags_container mt-3">
+            <div class="row ms_tags_row">
+              <div class="col-6">
+                <div class="row">
+                  @foreach ($tags as $tag)
 
-    <div class="ms_tags_container">
-      @foreach ($tags as $tag)
-        <div>
-          <input class="ms_checkbox" type="checkbox" name="tags[]" value="{{$tag->id}}">
-          <label>{{$tag->tag}}</label>
+                          <div class="col-md-6 col-sm-12">
+                            <input class="ms_checkbox" type="checkbox" name="tags[]" value="{{$tag->id}}">
+                            <label>{{$tag->tag}}</label>
+                          </div>
+
+                  @endforeach
+                </div>
+              </div>
+            </div>
+      @endif
+      {{-- fine scelta servizi opzionali --}}
+
+    {{-- scelta filtri numero camera, letti e km --}}
+    <h3 class="mt-4">Seleziona i filtri di tuo interesse</h3>
+    <div class="row">
+
+      <div class="col-md-4 col-sm-12">
+
+        <div class="form-group">
+           <label for="formControlRangeRooms">seleziona numero di stanze</label>
+           <span class="ms_range_rooms"></span>
+           <input type="range" class="form-control-range" id="formControlRangeRooms" min="1" max="50">
         </div>
-      @endforeach
+      </div>
 
+      <div class="col-md-4 col-sm-12">
+        <div class="form-group">
+           <label for="formControlRangeBeds">seleziona numero di letti</label>
+           <span class="ms_range_beds"></span>
+           <input type="range" class="form-control-range" id="formControlRangeBeds" min="1" max="150">
+
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
+        <div class="form-group">
+           <label for="formControlRangeKm">seleziona chilometri di distanza</label>
+           <span class="ms_range_km"></span>
+           <input type="range" class="form-control-range" id="formControlRangeKm" min="20" max="100">
+        </div>
+      </div>
     </div>
-  @endif
+    {{-- fine scelta filtri numero camera, letti e km --}}
+
+  </div>
+</div>
+{{-- FINE SEZIONE FILTRI --}}
 
 
+
+{{-- inizio sezione che mostra appartamenti --}}
+<div class="container">
   <div class="ms_apartment_container">
 
   </div>
