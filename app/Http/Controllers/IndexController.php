@@ -277,8 +277,21 @@ class IndexController extends Controller
             }
           }
 
+          //calcolo totale numero di views
+          $total_views = 0;
+          foreach ($array_views as $number) {
+            $total_views += $number;
+          }
 
-        return view('admin.apartments.chart',compact('apartment'))
+          //calcolo totale numero di messaggi ricevuti
+          $total_messages = 0;
+          foreach ($array_counts_message as $number) {
+            $total_messages += $number;
+          }
+
+
+
+        return view('admin.apartments.chart',compact('apartment','total_views','total_messages'))
              ->with('array_dates',json_encode($array_dates,JSON_NUMERIC_CHECK))
              ->with('array_views',json_encode($array_views,JSON_NUMERIC_CHECK))
              ->with('array_dates_message',json_encode($array_dates_message,JSON_NUMERIC_CHECK))

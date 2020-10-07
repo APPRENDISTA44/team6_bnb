@@ -142,6 +142,11 @@
   }
 }
 
+#ms_chart.ms_views,
+#ms_chart.ms_messages {
+  height: 250px;
+}
+
 /*======================
     404 page
 =======================*/

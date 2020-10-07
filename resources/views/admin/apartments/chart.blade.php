@@ -2,10 +2,13 @@
 @section('content')
   {{-- script per chart --}}
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <div class="container">
+  <div class="container" id="ms_chart">
+    <h1 class="mt-4">Statistiche {{$apartment->title}}</h1>
     <div class="row">
-      <div class="col-6">
-        <canvas id="myChart" width="400" height="400"></canvas>
+      <div class="col-12 ms_views">
+        <h3 class="mt-4 mb-4">Visualizzazioni totali: {{$total_views}}</h3>
+
+        <canvas id="myChart"></canvas>
 
         <script>
         var array_dates = <?php echo $array_dates; ?>;
@@ -41,13 +44,25 @@
               }]
             },
             options: {
+              legend: {
+                display: false
+              },
               scales: {
                 yAxes: [{
-                  ticks: {
-                    beginAtZero: true
+                  ticks:{
+                    min: 0,
+                    stepSize: 1,
+                    fontSize: 15,
+
                   }
+                }],
+                xAxes: [{
+                  ticks:{
+                    fontSize: 20,
+                  },
                 }]
               }
+
             }
           });
         </script>
@@ -56,8 +71,9 @@
 
       {{-- grafico messaggi --}}
 
-      <div class="col-6">
-        <canvas id="myChartMessage" width="400" height="400"></canvas>
+      <div class="col-12 ms_messages">
+        <h3 class="mt-4 mb-4">Messaggi Ricevuti: {{$total_messages}}</h3>
+        <canvas id="myChartMessage"></canvas>
 
         <script>
         var array_dates_message = <?php echo $array_dates_message; ?>;
@@ -94,11 +110,22 @@
               }]
             },
             options: {
+              legend: {
+                display: false
+              },
               scales: {
                 yAxes: [{
-                  ticks: {
-                    beginAtZero: true
+                  ticks:{
+                    min: 0,
+                    stepSize: 1,
+                    fontSize: 15,
                   }
+                }],
+                xAxes: [{
+                  ticks:{
+                    fontSize: 20,
+
+                  },
                 }]
               }
             }
