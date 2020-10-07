@@ -93,7 +93,7 @@ $(document).ready(function(){
 });
 
   //funzione per chiamata ajax che ritorna json
-function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
+  function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
 
   //cattura dati indirizzo dal form
   var inputSearch = $('#ms_homepage input').val().trim();
@@ -151,6 +151,9 @@ function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
             console.log(response.success);
             //svuoto container con i risultati degli appartamenti
             $('.ms_apartment_container').html('');
+
+            // mostro i filtri
+            $('#ms_filter_search').removeClass('d-none');
             //scrivo dentro al template con handlebars
             var source = $('#ms_apartment_template').html();
             var template = Handlebars.compile(source);

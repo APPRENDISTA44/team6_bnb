@@ -4,15 +4,15 @@
 .ms_links {
   color: #fff;
   padding: 10px 15px;
-  background-color: #717171;
+  background-color: #FF385C;
   border-radius: 7px;
-  border: 1px solid #717171;
+  border: 1px solid #FF385C;
 }
 
 .ms_links:hover {
   color: #fff;
   padding: 10px 15px;
-  background-color: #FF385C;
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
   border-radius: 7px;
   border: 1px solid #FF385C;
   text-decoration: none;
@@ -40,9 +40,24 @@
   }
 }
 
-/* Set the size of the div element that contains the map */
+.ms_show {
+  /* Set the size of the div element that contains the map */
+}
 
-#map {
+.ms_show img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.ms_show ul {
+  padding: 0;
+}
+
+.ms_show ul li {
+  list-style-type: none;
+}
+
+.ms_show #map {
   height: 400px;
   /* The height is 400 pixels */
   width: 100%;
@@ -121,6 +136,26 @@
   float: right;
 }
 
+.ms_apartment_container .card {
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ms_apartment_container .card .card-img-top {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 180px;
+}
+
+.ms_apartment_container .card .card-title {
+  height: 40px;
+}
+
+.ms_apartment_container .card .card-text {
+  height: 80px;
+  overflow-y: hidden;
+}
+
 @media screen and (max-width: 767px) {
   .ms_homepage input.form-control {
     width: 250px;
@@ -139,6 +174,16 @@
     left: 25%;
     text-align: center;
     font-size: 12px;
+  }
+
+  .ms_apartment_container .card .card-img-top {
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .ms_homepage .btn {
+    top: 0px;
   }
 }
 

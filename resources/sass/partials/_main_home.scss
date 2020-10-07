@@ -2,6 +2,7 @@
 // 	background: #BABABA;
 // }
 
+// sezione above the fold (immagine e search)
 .ms_homepage {
   position: relative;
 }
@@ -75,7 +76,9 @@
     color: #000;
   }
 }
+// fine sezione above the fold (immagine e search)
 
+// sezione ricerca filtri
 #ms_filter_search {
   .ms_range_rooms,
   .ms_range_beds,
@@ -83,9 +86,33 @@
     float: right;
   }
 }
+// fine sezione ricerca filtri
 
-// media queries
+// sezione card per mostrare appartamenti
+.ms_apartment_container .card {
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+  .card-img-top {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 180px;
+  }
+  .card-title {
+    height: 40px;
+  }
+  .card-text {
+    height: 80px;
+    overflow-y: hidden;
+  }
+}
+
+// finesezione card per mostrare appartamenti
+
+
+// MEDIA QUERIES
 @media screen and (max-width: 767px) {
+
+  // above the fold
   .ms_homepage input.form-control {
     width: 250px;
   }
@@ -104,4 +131,19 @@
     text-align: center;
     font-size: 12px;
   }
+  // fine above the fold
+
+  // card
+  .ms_apartment_container .card .card-img-top {
+    height: auto;
+  }
+  // fine card
+
 }
+// above the fold
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .ms_homepage .btn {
+    top: 0px;
+  }
+}
+// fine above the fold

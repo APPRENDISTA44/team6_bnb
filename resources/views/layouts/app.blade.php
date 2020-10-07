@@ -46,7 +46,7 @@
                     <ul class="navbar-nav ml-auto">
 
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('login') }}">{{ __('Diventa un Host') }}</a>
+                          <a class="nav-link" href="{{ route('admin.apartment.create') }}">{{ __('Crea il tuo appartamento') }}</a>
                       </li>
 
                       <li class="nav-item">
