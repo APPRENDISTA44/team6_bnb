@@ -1,6 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;
 
 400;500;600;700;900&display=swap);@charset "UTF-8";
+.ms_links {
+  color: #fff;
+  padding: 10px 15px;
+  background-color: #717171;
+  border-radius: 7px;
+  border: 1px solid #717171;
+}
+
+.ms_links:hover {
+  color: #fff;
+  padding: 10px 15px;
+  background-color: #FF385C;
+  border-radius: 7px;
+  border: 1px solid #FF385C;
+  text-decoration: none;
+}
+
 .ms_header_button {
   color: #fff !important;
   background-color: #FF385C;
@@ -96,6 +113,12 @@
   text-decoration: none;
   background-color: #ebebeb;
   color: #000;
+}
+
+#ms_filter_search .ms_range_rooms,
+#ms_filter_search .ms_range_beds,
+#ms_filter_search .ms_range_km {
+  float: right;
 }
 
 @media screen and (max-width: 767px) {

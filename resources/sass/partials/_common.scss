@@ -1,0 +1,17 @@
+// stili dei links
+.ms_links {
+  color: #fff;
+  padding: 10px 15px;
+  background-color: $primary_color;
+  border-radius: 7px;
+  border: 1px solid $primary_color;
+}
+// stile links all'hover
+.ms_links:hover {
+  color: #fff;
+  padding: 10px 15px;
+  background-color: $secondary_color;
+  border-radius: 7px;
+  border: 1px solid $secondary_color;
+  text-decoration: none;
+}
