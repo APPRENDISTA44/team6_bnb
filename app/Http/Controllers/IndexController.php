@@ -292,9 +292,17 @@ class IndexController extends Controller
 
     //ritorno la view per effettuare sponsorizzazioni
     public function paymentHandler(Apartment $apartment){
-      $sponsors = Sponsor::all();
 
-      return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
+      // trovo l'id utente loggato
+      $user_id = Auth::id();
+      if ($apartment->user_id === $user_id){
+        $sponsors = Sponsor::all();
+        return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
+      }else {
+        // se non corrisponde mostro pagina 404
+        abort(404);
+      }
+
     }
 
 
