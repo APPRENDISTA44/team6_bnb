@@ -28,7 +28,7 @@
   <script src="https://js.braintreegateway.com/web/dropin/1.24.0/js/dropin.js"></script>
 
   {{-- HTML --}}
-  <div class="ms_sponsor">
+  <div class="ms_sponsor d-none" id="ms_payment_container">
     <div id="dropin-container"></div>
     <button id="submit-button" class="button button--small button--green">Purchase</button>
   </div>
