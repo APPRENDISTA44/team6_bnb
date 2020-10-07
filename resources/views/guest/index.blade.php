@@ -9,17 +9,27 @@
     </div>
   @endif
 
-
-
-
-  <div class="container" id="ms_homepage">
+  {{-- sezione con search e immagine di sfondo --}}
+  <div class="container ms_homepage" id="ms_homepage">
     <div class="row">
       <div class="col">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
+        <div class="ms_background_image">
+          <div class=" ms_absolute">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
+          </div>
+        </div>
+
+        <div class="text">
+          <h1>Riscopri L'italia</h1>
+          <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
+          <a href="#">Esplora i dintorni</a>
+        </div>
       </div>
     </div>
   </div>
+
+{{-- sezione scelta filtri --}}
 <div class="container">
   <div class="form-group">
      <label for="formControlRangeRooms">seleziona numero di stanze</label>

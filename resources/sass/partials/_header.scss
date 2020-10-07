@@ -1,0 +1,22 @@
+.ms_header_button {
+  color: #fff!important;
+  background-color: $secondary_color;
+  border-radius: 4px;
+}
+
+.ms_header_button:hover {
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+}
+
+// media queries
+@media screen and (max-width: 767px) {
+  .ms_header_button {
+    color: $secondary_color!important;
+    background-color: #fff;
+  }
+
+  .ms_header_button:hover {
+    background: none;
+    color: #E61E4D!important;
+  }
+}
