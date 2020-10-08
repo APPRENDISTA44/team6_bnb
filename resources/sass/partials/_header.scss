@@ -1,3 +1,9 @@
+.navbar {
+  position: fixed!important;
+  z-index: 1;
+  width: 100%;
+  height: 70px;
+}
 .ms_header_button {
   color: #fff!important;
   background-color: $secondary_color;

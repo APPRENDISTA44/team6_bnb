@@ -1,26 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
-
   {{-- sezione con search e immagine di sfondo --}}
-  <div class="container-fluid ms_homepage" id="ms_homepage">
-    <div class="row">
-      <div class="col">
-        <div class="ms_background_image">
-          <div class=" ms_absolute">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
-          </div>
-        </div>
-
-        <div class="text">
-          <h1>Riscopri L'italia</h1>
-          <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
-          <a href="#">Esplora i dintorni</a>
-        </div>
+  <div class="ms_homepage" id="ms_homepage">
+    <div class="ms_background_image">
+      <div class=" ms_absolute">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
       </div>
     </div>
+    <div class="text">
+      <h1>Riscopri L'italia</h1>
+      <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
+      <a href="#">Esplora i dintorni</a>
+    </div>
   </div>
+
   {{-- fine sezione search e immagine di sfondo --}}
 
 {{-- link ai messaggi ed appartamenti admin --}}
@@ -40,8 +35,7 @@
 
 
 {{-- sezione scelta filtri --}}
-<div id="ms_filter_search">
-
+<div id="ms_filter_search" class="d-none">
   <div class="container mt-4">
 
     <h3>Seleziona i servizi di tuo interesse</h3>
@@ -63,6 +57,7 @@
                 </div>
               </div>
             </div>
+          </div>
       @endif
       {{-- fine scelta servizi opzionali --}}
 
@@ -102,59 +97,32 @@
 </div>
 {{-- FINE SEZIONE FILTRI --}}
 
-
-
 {{-- inizio sezione che mostra appartamenti --}}
-<div class="container">
-  <div class="ms_apartment_container">
-
-  </div>
-</div>
-
-
-
-<script id="ms_apartment_template" type="text/x-handlebars-template">
   <div class="container">
-    <div class="row">
-      <div class="col-4">
+    <div class="row ms_apartment_container">
 
-        <!-- card -->
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">@{{title}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+    </div>
+  </div>
+{{-- fine sezione che mostra appartamenti --}}
 
+{{-- Inzio template handlebars per mostrare appartamenti --}}
+<script id="ms_apartment_template" type="text/x-handlebars-template">
+  <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
 
-        <!-- Titolo -->
-        <h1>@{{title}}</h1>
-        <!-- Inidirzzo -->
-        <div class="address">
-        <h3>@{{city}} - @{{province}}</h3>
-        </div>
-
-        <!-- Immagine -->
-        <div class="apartment_image">
-        <img src="{{asset('storage') . "/" }}@{{image}}" alt="@{{title}}">
-        </div>
-
-        <!-- Collegamento a dettagli -->
+    <!-- card singolo appartamento-->
+    <div class="card">
+      <img src="{{asset('storage') . "/" }}@{{image}}" alt="@{{title}}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">@{{title}}</h5>
+        <p class="card-text">@{{description}}</p>
 
         @if (Auth::check())
-          <a href="admin/apartment/@{{id}}">Vedi dettagli</a>
+          <a class="ms_links" href="admin/apartment/@{{id}}">Vedi dettagli</a>
         @else
-          <a href="guest/apartment/@{{id}}">Vedi dettagli</a>
+          <a class="ms_links" href="guest/apartment/@{{id}}">Vedi dettagli</a>
         @endif
-
-
       </div>
     </div>
-
   </div>
 </script>
-
-
 @endsection

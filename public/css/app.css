@@ -1,21 +1,42 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;
 
 400;500;600;700;900&display=swap);@charset "UTF-8";
-.ms_links {
-  color: #fff;
-  padding: 10px 15px;
-  background-color: #717171;
-  border-radius: 7px;
-  border: 1px solid #717171;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.ms_links:hover {
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.ms_main_content {
+  padding-top: 70px;
+}
+
+.ms_links {
   color: #fff;
   padding: 10px 15px;
   background-color: #FF385C;
   border-radius: 7px;
   border: 1px solid #FF385C;
+}
+
+.ms_links:hover {
+  color: #fff;
+  padding: 10px 15px;
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border-radius: 7px;
+  border: 1px solid #FF385C;
   text-decoration: none;
+}
+
+.navbar {
+  position: fixed !important;
+  z-index: 1;
+  width: 100%;
+  height: 70px;
 }
 
 .ms_header_button {
@@ -40,13 +61,51 @@
   }
 }
 
-/* Set the size of the div element that contains the map */
+.ms_show {
+  /* Set the size of the div element that contains the map */
+}
 
-#map {
+.ms_show img {
+  width: 100%;
+  border-radius: 11px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ms_show ul {
+  padding: 0;
+}
+
+.ms_show ul li {
+  list-style-type: none;
+}
+
+.ms_show label {
+  font-size: 18px;
+}
+
+.ms_show textarea {
+  width: 100%;
+  padding: 5px 10px;
+}
+
+.ms_show #map {
   height: 400px;
   /* The height is 400 pixels */
   width: 100%;
   /* The width is the width of the web page */
+  border-radius: 11px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ms_show .ms_admin_show_links {
+  display: flex;
+  flex-direction: column;
+}
+
+.ms_show .ms_admin_show_links .ms_links {
+  text-align: center;
+  width: 190px;
+  margin-top: 10px;
 }
 
 .ms_homepage {
@@ -121,6 +180,26 @@
   float: right;
 }
 
+.ms_apartment_container .card {
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ms_apartment_container .card .card-img-top {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 180px;
+}
+
+.ms_apartment_container .card .card-title {
+  height: 40px;
+}
+
+.ms_apartment_container .card .card-text {
+  height: 80px;
+  overflow-y: hidden;
+}
+
 @media screen and (max-width: 767px) {
   .ms_homepage input.form-control {
     width: 250px;
@@ -139,6 +218,16 @@
     left: 25%;
     text-align: center;
     font-size: 12px;
+  }
+
+  .ms_apartment_container .card .card-img-top {
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .ms_homepage .btn {
+    top: 0px;
   }
 }
 
@@ -180,6 +269,15 @@
 
 .contant_box_404 {
   margin-top: -50px;
+}
+
+.ms_apartment_list .card {
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.ms_apartment_list .card img {
+  width: 40%;
 }
 
 /*!
