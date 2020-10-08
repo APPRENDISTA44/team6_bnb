@@ -1,6 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;
 
 400;500;600;700;900&display=swap);@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.ms_main_content {
+  padding-top: 70px;
+}
+
 .ms_links {
   color: #fff;
   padding: 10px 15px;
@@ -16,6 +30,13 @@
   border-radius: 7px;
   border: 1px solid #FF385C;
   text-decoration: none;
+}
+
+.navbar {
+  position: fixed !important;
+  z-index: 1;
+  width: 100%;
+  height: 70px;
 }
 
 .ms_header_button {
@@ -46,7 +67,8 @@
 
 .ms_show img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 11px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .ms_show ul {
@@ -57,11 +79,33 @@
   list-style-type: none;
 }
 
+.ms_show label {
+  font-size: 18px;
+}
+
+.ms_show textarea {
+  width: 100%;
+  padding: 5px 10px;
+}
+
 .ms_show #map {
   height: 400px;
   /* The height is 400 pixels */
   width: 100%;
   /* The width is the width of the web page */
+  border-radius: 11px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ms_show .ms_admin_show_links {
+  display: flex;
+  flex-direction: column;
+}
+
+.ms_show .ms_admin_show_links .ms_links {
+  text-align: center;
+  width: 190px;
+  margin-top: 10px;
 }
 
 .ms_homepage {
@@ -225,6 +269,15 @@
 
 .contant_box_404 {
   margin-top: -50px;
+}
+
+.ms_apartment_list .card {
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.ms_apartment_list .card img {
+  width: 40%;
 }
 
 /*!

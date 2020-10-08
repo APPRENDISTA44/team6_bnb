@@ -1,7 +1,8 @@
 .ms_show {
   img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 11px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
   }
   ul {
     padding: 0;
@@ -9,10 +10,28 @@
   ul li {
     list-style-type: none;
   }
+  label {
+    font-size: 18px;
+  }
+  textarea {
+    width: 100%;
+    padding: 5px 10px;
+  }
 
   /* Set the size of the div element that contains the map */
         #map {
           height: 400px;  /* The height is 400 pixels */
           width: 100%;  /* The width is the width of the web page */
+          border-radius: 11px;
+          box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
          }
+  .ms_admin_show_links {
+    display: flex;
+    flex-direction: column;
+    .ms_links {
+      text-align: center;
+      width: 190px;
+      margin-top: 10px;
+    }
+  }
 }

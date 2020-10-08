@@ -1,26 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
-
   {{-- sezione con search e immagine di sfondo --}}
-  <div class="container-fluid ms_homepage" id="ms_homepage">
-    <div class="row">
-      <div class="col">
-        <div class="ms_background_image">
-          <div class=" ms_absolute">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
-          </div>
-        </div>
-
-        <div class="text">
-          <h1>Riscopri L'italia</h1>
-          <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
-          <a href="#">Esplora i dintorni</a>
-        </div>
+  <div class="ms_homepage" id="ms_homepage">
+    <div class="ms_background_image">
+      <div class=" ms_absolute">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
       </div>
     </div>
+    <div class="text">
+      <h1>Riscopri L'italia</h1>
+      <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
+      <a href="#">Esplora i dintorni</a>
+    </div>
   </div>
+
   {{-- fine sezione search e immagine di sfondo --}}
 
 {{-- link ai messaggi ed appartamenti admin --}}
