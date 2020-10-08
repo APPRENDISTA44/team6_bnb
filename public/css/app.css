@@ -39,6 +39,21 @@ body {
   height: 70px;
 }
 
+.navbar-collapse {
+  background-color: #fff;
+  border-radius: 11px;
+  padding: 15px;
+}
+
+.navbar-toggler {
+  background-color: #FF385C !important;
+}
+
+.navbar-toggler .fas.fa-bars {
+  color: white;
+  font-size: 16px;
+}
+
 .ms_header_button {
   color: #fff !important;
   background-color: #FF385C;
@@ -331,6 +346,18 @@ body {
 
 .ms_apartment_list .card img {
   width: 40%;
+}
+
+.ms_message_list table {
+  border-radius: 10px;
+}
+
+.ms_message_list .ms_table_first_row th {
+  border-top: 0;
+}
+
+.ms_message_list .ms_table_col_link {
+  min-width: 200px;
 }
 
 /*!

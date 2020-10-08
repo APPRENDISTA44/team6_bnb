@@ -4,6 +4,21 @@
   width: 100%;
   height: 70px;
 }
+.navbar-collapse {
+  background-color: #fff;
+  border-radius: 11px;
+  padding: 15px; 
+}
+
+.navbar-toggler {
+  background-color: $secondary_color!important;
+
+  .fas.fa-bars {
+    color: white;
+    font-size: 16px;
+  }
+}
+
 .ms_header_button {
   color: #fff!important;
   background-color: $secondary_color;
