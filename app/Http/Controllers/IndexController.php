@@ -56,36 +56,40 @@ class IndexController extends Controller
         $apartment_latitude = $apartment->latitude;
         $apartment_longitude = $apartment->longitude;
         $apartment_coordinates = $apartment_latitude . ',' . $apartment_longitude;
+        $apartment_availability = $apartment->availability;
         $distance = $this->points_distance($user_coordinates,$apartment_coordinates);
-        //se la distanza dell'appartamento è minore di quella settata
-        if ( $distance <= $distance_research ) {
-          //se il numero di stanze e il numero dei letti sono maggiori di quelli settati
-          if ( ($apartment_rooms >= $number_of_rooms) && ($apartment_beds >= $number_of_beds) ) {
-            //se non ha selezionato tags mostro tutti i risultati
-            if (empty($array_tags)) {
-              //mostro l'appartamento
-              $array_results[] = [
-                'distance' => $distance,
-                'apartment' => $apartment
-              ];
-              //altrimenti se l'utente ha selezionato dei tag
-            }else {
-              //creo un array di oggetti tags
-              $apartments_tags = $apartment->tags;
-              //se non è vuoto
-              if (!empty($apartments_tags)) {
-                //cicliamo su array di oggetti tags e metto l'id dei tags presenti
-                //in un array di supporto
-                foreach ($apartments_tags as $apartments_tag) {
-                  $array_apartment_tag[] = $apartments_tag->id;
-                }
-                //controllo che $array_apartment_tag contenga tutti gli elementi di $array_tags
-                if (count($array_tags) === count(array_intersect($array_tags,$array_apartment_tag))) {
-                  //mostro l'appartamento
-                  $array_results[] = [
-                    'distance' => $distance,
-                    'apartment' => $apartment
-                  ];
+        //se l'appartamentoè disponibile
+        if ($apartment_availability === 1) {
+          //se la distanza dell'appartamento è minore di quella settata
+          if ( $distance <= $distance_research ) {
+            //se il numero di stanze e il numero dei letti sono maggiori di quelli settati
+            if ( ($apartment_rooms >= $number_of_rooms) && ($apartment_beds >= $number_of_beds) ) {
+              //se non ha selezionato tags mostro tutti i risultati
+              if (empty($array_tags)) {
+                //mostro l'appartamento
+                $array_results[] = [
+                  'distance' => $distance,
+                  'apartment' => $apartment
+                ];
+                //altrimenti se l'utente ha selezionato dei tag
+              }else {
+                //creo un array di oggetti tags
+                $apartments_tags = $apartment->tags;
+                //se non è vuoto
+                if (!empty($apartments_tags)) {
+                  //cicliamo su array di oggetti tags e metto l'id dei tags presenti
+                  //in un array di supporto
+                  foreach ($apartments_tags as $apartments_tag) {
+                    $array_apartment_tag[] = $apartments_tag->id;
+                  }
+                  //controllo che $array_apartment_tag contenga tutti gli elementi di $array_tags
+                  if (count($array_tags) === count(array_intersect($array_tags,$array_apartment_tag))) {
+                    //mostro l'appartamento
+                    $array_results[] = [
+                      'distance' => $distance,
+                      'apartment' => $apartment
+                    ];
+                  }
                 }
               }
             }
@@ -134,13 +138,19 @@ class IndexController extends Controller
     public function show($id){
       $apartment = Apartment::find($id);
 
+      //preparo array servizi da tornare alla view
+      $array_tags = [];
+      foreach ($apartment->tags as $tags) {
+        $array_tags[] = $tags->tag;
+      }
+
       //registro l'evento di visualizzazione andando a registrarlo nel db
       $new_view = new View();
       $new_view->apartment_id = $id;
       $new_view->date = Carbon::now()->format('Y-m-d');
       $new_view->save();
 
-      return view("guest.show", compact("apartment"));
+      return view("guest.show", compact("apartment","array_tags"));
     }
 
     //gestisco l'arrivo di mail
@@ -277,8 +287,21 @@ class IndexController extends Controller
             }
           }
 
+          //calcolo totale numero di views
+          $total_views = 0;
+          foreach ($array_views as $number) {
+            $total_views += $number;
+          }
 
-        return view('admin.apartments.chart',compact('apartment'))
+          //calcolo totale numero di messaggi ricevuti
+          $total_messages = 0;
+          foreach ($array_counts_message as $number) {
+            $total_messages += $number;
+          }
+
+
+
+        return view('admin.apartments.chart',compact('apartment','total_views','total_messages'))
              ->with('array_dates',json_encode($array_dates,JSON_NUMERIC_CHECK))
              ->with('array_views',json_encode($array_views,JSON_NUMERIC_CHECK))
              ->with('array_dates_message',json_encode($array_dates_message,JSON_NUMERIC_CHECK))
@@ -297,7 +320,32 @@ class IndexController extends Controller
       $user_id = Auth::id();
       if ($apartment->user_id === $user_id){
         $sponsors = Sponsor::all();
-        return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
+        //cerco se è presente una sponsorizzazione nello storico
+        $array_sponsors = [];
+        $array_sponsors = $apartment->sponsors()->where('apartment_id',$apartment->id)->first();
+        $date_of_expire = 0;
+        $date_of_expire_hour = 0;
+        $date_of_expire_data = 0;
+
+        //se è presente prendo la data di scadenza
+        if ($array_sponsors !== null) {
+          //la salvo in una variabile
+          $date_of_expire = $apartment->sponsors()->where('apartment_id',$apartment->id)->latest()->first()->pivot->date_end;
+
+          //controllo che la data di scadenza sia passata
+          if ( Carbon::now(new \DateTimeZone('Europe/Rome'))->gt($date_of_expire) ) {
+            //se è scaduto le do un valore 0
+            $date_of_expire = 0;
+          }else {
+            //prendo la data e l'ora di $date_of_expire nel formato desiderato
+            $array_date_of_expire = explode(" ", $date_of_expire);
+            $date_of_expire_hour = $array_date_of_expire[1];
+            $date_of_expire_data = $array_date_of_expire[0];
+          }
+        }
+
+        return view('admin.apartments.sponsor', compact('sponsors', 'apartment','date_of_expire','date_of_expire_hour','date_of_expire_data'));
+
       }else {
         // se non corrisponde mostro pagina 404
         abort(404);

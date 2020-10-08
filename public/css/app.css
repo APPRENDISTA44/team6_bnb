@@ -108,6 +108,17 @@ body {
   margin-top: 10px;
 }
 
+#ms_form_create #ms_image {
+  width: 100%;
+  border-radius: 3%;
+  box-shadow: 0px 0px 5px 3px rgba(128, 2, 52, 0.87);
+}
+
+#ms_form_create .ms_label_image {
+  font-size: 20px;
+  margin: 0;
+}
+
 .ms_homepage {
   position: relative;
 }
@@ -229,6 +240,48 @@ body {
   .ms_homepage .btn {
     top: 0px;
   }
+}
+
+#ms_landscape_sponsor {
+  height: calc(100vh - 70px);
+  background-image: url("/../images/landscape.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center, center;
+  color: white;
+}
+
+#ms_landscape_sponsor .ms_container_deadline {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 7px;
+}
+
+#ms_landscape_sponsor .ms_container_deadline h2 {
+  font-size: 55px;
+  font-weight: bold;
+}
+
+#ms_landscape_sponsor .ms_container_deadline h3 {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  #ms_landscape_sponsor .ms_container_deadline h2 {
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  #ms_landscape_sponsor .ms_container_deadline h3 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
+
+#ms_chart.ms_views,
+#ms_chart.ms_messages {
+  height: 250px;
 }
 
 /*======================

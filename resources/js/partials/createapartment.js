@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  $('#ms_form_create .ms_submit').hide();
+  $('#ms_form_create .ms_coordinates').hide();
+
 
   // variabili per chiamata ajax
   var countryCode = "IT";
@@ -8,10 +11,11 @@ $(document).ready(function(){
 
   // Messaggio di Errore
   var errorMessage = 'I campi sono sbagliati';
-  
+
 
   //evento click per la creazione di coordinate
   $('#ms_form_create #ms_coordinate_generator').on('click',function(){
+
     $("#ms_form_create .ms_error").addClass('d-none').text(errorMessage);
 
     //cattura dati indirizzo dal form
@@ -43,6 +47,9 @@ $(document).ready(function(){
               $("#ms_form_create .ms_error").removeClass('d-none').text(errorMessage);
             }else {
               //inseriamo i dati di latitudine e longitudine recuperati nel form
+              $('#ms_form_create .ms_submit').fadeIn(2000);
+              $('#ms_form_create .ms_coordinates').fadeIn(2000);
+
               $('#ms_form_create .ms_coordinates .ms_longitude').val(data.results[0].position.lon);
               $('#ms_form_create .ms_coordinates .ms_latitude').val(data.results[0].position.lat);
             }
