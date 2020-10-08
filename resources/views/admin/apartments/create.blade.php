@@ -26,6 +26,7 @@
 
           <!-- campo titolo -->
           <div class="mb-3">
+            
             <label class="mb-2">Titolo</label>
             <input type="text" class="form-control" name="title" value="{{old('title')}}" maxlength="255">
           </div>

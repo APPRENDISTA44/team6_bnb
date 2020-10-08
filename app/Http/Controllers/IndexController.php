@@ -310,7 +310,31 @@ class IndexController extends Controller
       $user_id = Auth::id();
       if ($apartment->user_id === $user_id){
         $sponsors = Sponsor::all();
-        return view('admin.apartments.sponsor', compact('sponsors', 'apartment'));
+        //cerco se è presente una sponsorizzazione nello storico
+        $array_sponsors = [];
+        $array_sponsors = $apartment->sponsors()->where('apartment_id',$apartment->id)->first();
+        $date_of_expire = 0;
+        $date_of_expire_hour = 0;
+        $date_of_expire_data = 0;
+
+        //se è presente prendo la data di scadenza
+        if ($array_sponsors !== null) {
+          //la salvo in una variabile
+          $date_of_expire = $apartment->sponsors()->where('apartment_id',$apartment->id)->latest()->first()->pivot->date_end;
+
+          //controllo che la data di scadenza sia passata
+          if ( Carbon::now(new \DateTimeZone('Europe/Rome'))->gt($date_of_expire) ) {
+            //se è scaduto le do un valore 0
+            $date_of_expire = 0;
+          }else {
+            //prendo la data e l'ora di $date_of_expire nel formato desiderato
+            $date_of_expire_data = $date_of_expire->format('d-m-Y');
+            dd($date_of_expire_data);
+          }
+        }
+
+        return view('admin.apartments.sponsor', compact('sponsors', 'apartment','date_of_expire','date_of_expire_hour','date_of_expire_data'));
+
       }else {
         // se non corrisponde mostro pagina 404
         abort(404);
