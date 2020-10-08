@@ -154,11 +154,40 @@
 }
 
 #ms_landscape_sponsor {
-  height: 100vh;
+  height: calc(100vh - 70px);
   background-image: url("/../images/landscape.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center, center;
+  color: white;
+}
+
+#ms_landscape_sponsor .ms_container_deadline {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 7px;
+}
+
+#ms_landscape_sponsor .ms_container_deadline h2 {
+  font-size: 55px;
+  font-weight: bold;
+}
+
+#ms_landscape_sponsor .ms_container_deadline h3 {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  #ms_landscape_sponsor .ms_container_deadline h2 {
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  #ms_landscape_sponsor .ms_container_deadline h3 {
+    font-size: 25px;
+    font-weight: bold;
+  }
 }
 
 #ms_chart.ms_views,

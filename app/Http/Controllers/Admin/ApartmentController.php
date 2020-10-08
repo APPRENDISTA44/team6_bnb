@@ -102,6 +102,11 @@ class ApartmentController extends Controller
       $user = Auth::user();
       $apartment = Apartment::find($id);
 
+      $array_tags = [];
+      foreach ($apartment->tags as $tags) {
+        $array_tags[] = $tags->tag;
+      }
+
       // trovo l'id utente loggato
       $user_id = Auth::id();
 
@@ -111,7 +116,7 @@ class ApartmentController extends Controller
 
 
         // Gli mostro i dettagli del suo appartamento
-        return view("admin.apartments.show", compact("apartment"));
+        return view("admin.apartments.show", compact("apartment","array_tags"));
 
       // Altrimenti, gli mostro quello degli ospiti
       } else {
@@ -120,7 +125,7 @@ class ApartmentController extends Controller
         $new_view->apartment_id = $id;
         $new_view->date = Carbon::now()->format('Y-m-d');
         $new_view->save();
-        return view("guest.show", compact("apartment","user"));
+        return view("guest.show", compact("apartment","user","array_tags"));
       }
     }
 

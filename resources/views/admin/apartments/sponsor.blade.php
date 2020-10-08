@@ -86,9 +86,13 @@
 
     @else
       <div class="container-fluid d-flex justify-content-center align-items-center flex-column" id="ms_landscape_sponsor">
-        <h2>Hai già una sponsorizzazione attiva</h2>
-        <h3>Torna il</h3>
-        <h3>  </h3>
+        <div class="ms_container_deadline d-flex justify-content-center align-items-center flex-column">
+          <h2>Hai già una sponsorizzazione attiva</h2>
+          <h3>Torna il {{$date_of_expire_data}} alle {{$date_of_expire_hour}}</h3>
+        </div>
+        <a class="ms_links mt-5" href="{{route('admin.apartment.list', Auth::user())}}">Torna ai tuoi appartamenti</a>
+
+
       </div>
 
 
