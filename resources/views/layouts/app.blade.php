@@ -106,6 +106,77 @@
         <main class="ms_main_content">
             @yield('content')
         </main>
+
+        <footer class="mt-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <section>
+                  <h3>INFORMAZIONI</h3>
+
+                  <ul>
+                      <li><a href="#">Come funziona Airbnb</a></li>
+                      <li><a href="#">Newsroom</a></li>
+                      <li><a href="#">Airbnb Plus</a></li>
+                      <li><a href="#">Airbnb Luxe</a></li>
+                      <li><a href="#">HotelTonight</a></li>
+                      <li><a href="#">Airbnb for Work</a></li>
+                      <li><a href="#">Olimpiadi</a></li>
+                      <li><a href="#">Opportunità di lavoro</a></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <section>
+                  <h3>COMMUNITY</h3>
+
+                  <ul>
+                      <li><a href="#">Feedback</a></li>
+                      <li><a href="#">Surveys</a></li>
+                      <li><a href="#">Reviews</a></li>
+                      <li><a href="#">Praise</a></li>
+                      <li><a href="#">Reviews</a></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <section>
+                  <h3>OSPITA</h3>
+
+                  <ul>
+                      <li><a href="#">Feedback</a></li>
+                      <li><a href="#">Surveys</a></li>
+                      <li><a href="#">Reviews</a></li>
+                      <li><a href="#">Praise</a></li>
+                      <li><a href="#">Reviews</a></li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <section>
+                  <h3>ASSISTENZA</h3>
+
+                  <ul>
+                      <li><a href="#">Feedback</a></li>
+                      <li><a href="#">Surveys</a></li>
+                      <li><a href="#">Reviews</a></li>
+                      <li><a href="#">Praise</a></li>
+                      <li><a href="#">Reviews</a></li>
+                  </ul>
+                </section>
+                
+              </div>
+            </div>
+          </div>
+        </footer>
+
     </div>
 </body>
 </html>
