@@ -57,6 +57,20 @@
               @endforeach
           </ul>
         </div>
+        <div class="col-lg-2 col-md-6 col-sm-12 mt-lg-4 mt-md-2">
+          <span> <strong>Altri servizi </strong></span>
+          <ul>
+            @foreach ($array_tags as $tag)
+
+
+              <li>{{ $tag }}</li>
+
+
+            @endforeach
+          </ul>
+        </div>
+
+
       </div>
 
       <div class="row">
