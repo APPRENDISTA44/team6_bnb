@@ -90,7 +90,8 @@
 
 // sezione card per mostrare appartamenti
 .ms_apartment_container .card,
-.ms_sposored_apartment .card {
+.ms_sposored_apartment .card,
+.ms_apartment_sponsored_container .card {
   border-radius: 16px;
   box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
   .card-img-top {
@@ -105,6 +106,10 @@
     height: 80px;
     overflow-y: hidden;
   }
+}
+//personalizzo card appartamento in evidenza
+.ms_apartment_sponsored_container .card{
+  background-color: #184157;
 }
 
 // finesezione card per mostrare appartamenti

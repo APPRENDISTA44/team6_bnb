@@ -117,6 +117,14 @@
 
 {{-- inizio sezione che mostra appartamenti --}}
   <div class="container">
+    <div class="row ms_apartment_sponsored_container">
+
+    </div>
+  </div>
+{{-- fine sezione che mostra appartamenti --}}
+
+{{-- inizio sezione che mostra appartamenti --}}
+  <div class="container">
     <div class="row ms_apartment_container">
 
     </div>

@@ -211,27 +211,35 @@ body {
 }
 
 .ms_apartment_container .card,
-.ms_sposored_apartment .card {
+.ms_sposored_apartment .card,
+.ms_apartment_sponsored_container .card {
   border-radius: 16px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .ms_apartment_container .card .card-img-top,
-.ms_sposored_apartment .card .card-img-top {
+.ms_sposored_apartment .card .card-img-top,
+.ms_apartment_sponsored_container .card .card-img-top {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   height: 180px;
 }
 
 .ms_apartment_container .card .card-title,
-.ms_sposored_apartment .card .card-title {
+.ms_sposored_apartment .card .card-title,
+.ms_apartment_sponsored_container .card .card-title {
   height: 40px;
 }
 
 .ms_apartment_container .card .card-text,
-.ms_sposored_apartment .card .card-text {
+.ms_sposored_apartment .card .card-text,
+.ms_apartment_sponsored_container .card .card-text {
   height: 80px;
   overflow-y: hidden;
+}
+
+.ms_apartment_sponsored_container .card {
+  background-color: #184157;
 }
 
 @media screen and (max-width: 767px) {

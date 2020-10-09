@@ -152,10 +152,22 @@ $(document).ready(function(){
             console.log(response.sponsored);
             //svuoto container con i risultati degli appartamenti
             $('.ms_apartment_container').html('');
+            $('.ms_apartment_sponsored_container').html('');
 
             // mostro i filtri
             $('#ms_filter_search').removeClass('d-none');
-            //scrivo dentro al template con handlebars
+            //nascondo appartamenti in evidenza
+            $('.ms_sposored_apartment').hide();
+            //scrivo dentro al template con handlebars appartamenti sponsorizzati
+            var source = $('#ms_apartment_template').html();
+            var template = Handlebars.compile(source);
+            for (var i = 0; i < response.sponsored.length; i++) {
+              var singleApartment = response.sponsored[i];
+              var html = template(singleApartment);
+              $('.ms_apartment_sponsored_container').append(html);
+            }
+
+            //scrivo dentro al template con handlebars appartamenti normali
             var source = $('#ms_apartment_template').html();
             var template = Handlebars.compile(source);
             for (var i = 0; i < response.success.length; i++) {
