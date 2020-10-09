@@ -11,16 +11,26 @@ use App\View;
 use App\Sponsor;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\ApartmentSponsor;
 
 
 class IndexController extends Controller
 {
     // INDEX
     public function index() {
-      //recupero gli appartamenti nel db
-      $apartments = Apartment::all();
+      //trovo gli appartamenti sponsorizzati per popolare la sezione in evidenza
+      $sponsors = ApartmentSponsor::all();
+      $sponsors_filtered = $sponsors->where('date_end', '>', Carbon::now(new \DateTimeZone('Europe/Rome')))->groupBy('apartment_id');
+      $array_sponsored_apartment = [];
+      foreach ($sponsors_filtered as $key => $value) {
+        $array_sponsored_apartment[] = Apartment::find($key);
+      }
+
+        // dd($array_sponsored_apartment);
+
+      //passa alla index i tags da mostrare per filtrare  
       $tags = Tag::all();
-      return view('guest.index', compact('apartments','tags'));
+      return view('guest.index', compact('tags','array_sponsored_apartment'));
     }
 
     //funzione per gestire coordinate e dati inviati da un utente
