@@ -303,6 +303,43 @@ body {
   height: 250px;
 }
 
+footer {
+  color: #222222;
+}
+
+footer ul li {
+  list-style-type: none;
+  margin-top: 16px;
+}
+
+footer ul li :hover {
+  color: #222222;
+}
+
+footer a {
+  color: #222222;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+footer h3 {
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 35px;
+}
+
+footer section {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 767px) {
+  section {
+    border-bottom: none !important;
+  }
+}
+
 /*======================
     404 page
 =======================*/
