@@ -18,21 +18,39 @@
 
   {{-- fine sezione search e immagine di sfondo --}}
 
-{{-- link ai messaggi ed appartamenti admin --}}
-{{-- <div class="container ms_auth_links">
-  <div class="row mt-4">
-    <div class="col">
-      @if (Auth::check())
-          <div class="links float-right">
-            <a class="ms_links" href="{{route('messages', Auth::user())}}">Vedi i tuoi messaggi</a>
-            <a class="ms_links" href="{{route('admin.apartment.list', Auth::user())}}">Vedi i tuoi appartamenti</a>
-          </div>
-      @endif
+  <div class="container ms_sposored_apartment">
+    <div class="row mt-4">
+      <div class="col">
+        <h3>Appartementi in Evidenza</h3>
+      </div>
     </div>
-  </div>
-</div> --}}
-{{-- fine sezione dei link --}}
 
+    <div class="row">
+      {{--  sezione con gli appartamenti sponsorizzati --}}
+      @foreach ($array_sponsored_apartment as $sponsored_apartment)
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+
+          <!-- card singolo appartamento-->
+          <div class="card">
+            <img src="{{asset('storage') . "/" . $sponsored_apartment->image }}" alt="{{$sponsored_apartment->title}}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{$sponsored_apartment->title}}</h5>
+              <p class="card-text">{{$sponsored_apartment->description}}</p>
+
+              @if (Auth::check())
+                <a class="ms_links" href="admin/apartment/@{{id}}">Vedi dettagli</a>
+              @else
+                <a class="ms_links" href="guest/apartment/@{{id}}">Vedi dettagli</a>
+              @endif
+            </div>
+          </div>
+        </div>
+
+      @endforeach
+    </div>
+
+  </div>
 
 {{-- sezione scelta filtri --}}
 <div id="ms_filter_search" class="d-none">

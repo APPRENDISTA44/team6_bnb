@@ -16,6 +16,7 @@ footer {
     font-size: 12px;
     font-weight: 800;
     margin-bottom: 35px;
+    text-transform: uppercase;
   }
 
   section {
@@ -23,12 +24,38 @@ footer {
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
+
+  .social {
+    display: flex;
+    justify-content: flex-start;
+    li {
+      margin: 0 15px 0 0;
+    }
+    i {
+      font-size: 22px;
+    }
+  }
+
+  .colophone {
+    border-top: 1px solid #ddd;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
 }
+
+
 
 // media queries
 
 @media screen and (min-width: 767px) {
   section {
     border-bottom: none!important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .colophone {
+    border-top: none!important;
   }
 }

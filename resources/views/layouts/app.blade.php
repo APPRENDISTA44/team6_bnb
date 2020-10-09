@@ -113,17 +113,23 @@
               <div class="col-lg-3 col-md-3 col-sm-12">
 
                 <section>
-                  <h3>INFORMAZIONI</h3>
+                  <h3>Navigazione</h3>
 
                   <ul>
-                      <li><a href="#">Come funziona Airbnb</a></li>
-                      <li><a href="#">Newsroom</a></li>
-                      <li><a href="#">Airbnb Plus</a></li>
-                      <li><a href="#">Airbnb Luxe</a></li>
-                      <li><a href="#">HotelTonight</a></li>
-                      <li><a href="#">Airbnb for Work</a></li>
-                      <li><a href="#">Olimpiadi</a></li>
-                      <li><a href="#">Opportunità di lavoro</a></li>
+                    @if (Auth::check())
+                      <li>
+                        <a href="{{ route('messages', Auth::user()) }}">{{ __('Vedi i tuoi messaggi') }}</a>
+                      </li>
+
+                      <li>
+                        <a href="{{ route('admin.apartment.list', Auth::user()) }}">{{ __('Vedi i tuoi appartamenti') }}</a>
+                      </li>
+
+                    @endif
+
+                      <li>
+                        <a href="{{ route('admin.apartment.create') }}">{{ __('Crea il tuo appartamento') }}</a>
+                      </li>
                   </ul>
                 </section>
               </div>
@@ -131,14 +137,11 @@
               <div class="col-lg-3 col-md-3 col-sm-12">
 
                 <section>
-                  <h3>COMMUNITY</h3>
+                  <h3>About</h3>
 
                   <ul>
+                      <li><a href="#">Mission</a></li>
                       <li><a href="#">Feedback</a></li>
-                      <li><a href="#">Surveys</a></li>
-                      <li><a href="#">Reviews</a></li>
-                      <li><a href="#">Praise</a></li>
-                      <li><a href="#">Reviews</a></li>
                   </ul>
                 </section>
               </div>
@@ -146,14 +149,11 @@
               <div class="col-lg-3 col-md-3 col-sm-12">
 
                 <section>
-                  <h3>OSPITA</h3>
+                  <h3>Lavora con noi</h3>
 
                   <ul>
-                      <li><a href="#">Feedback</a></li>
-                      <li><a href="#">Surveys</a></li>
-                      <li><a href="#">Reviews</a></li>
-                      <li><a href="#">Praise</a></li>
-                      <li><a href="#">Reviews</a></li>
+                      <li><a href="#">Contatti</a></li>
+                      <li><a href="#">Works</a></li>
                   </ul>
                 </section>
               </div>
@@ -161,17 +161,23 @@
               <div class="col-lg-3 col-md-3 col-sm-12">
 
                 <section>
-                  <h3>ASSISTENZA</h3>
+                  <h3>Social</h3>
 
-                  <ul>
-                      <li><a href="#">Feedback</a></li>
-                      <li><a href="#">Surveys</a></li>
-                      <li><a href="#">Reviews</a></li>
-                      <li><a href="#">Praise</a></li>
-                      <li><a href="#">Reviews</a></li>
+                  <ul class="social">
+                      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                   </ul>
                 </section>
-                
+
+              </div>
+            </div>
+          </div>
+
+          <div class="container colophone">
+            <div class="row">
+              <div class="col-12">
+                <p>© 2020 Team6Bnb  , Inc. All rights reserved - Luca Isidoro, Linda Minotti, Alioune Pèn, Tommaso Venza - <a href="#">Privacy Policy</a> - <a href="#">Cookie Policy</a>  </p>
               </div>
             </div>
           </div>
