@@ -352,6 +352,18 @@ body {
   width: 40%;
 }
 
+.ms_message_list table {
+  border-radius: 10px;
+}
+
+.ms_message_list .ms_table_first_row th {
+  border-top: 0;
+}
+
+.ms_message_list .ms_table_col_link {
+  min-width: 200px;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
