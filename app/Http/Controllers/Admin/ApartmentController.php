@@ -207,7 +207,10 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-      
+      $apartment->tags()->detach();
+      $apartment->sponsors()->detach();
+      $apartment->delete();
+      return redirect()->route('admin.apartment.list', Auth::user());
     }
 
     // Funzione con le regole di validazione
