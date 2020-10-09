@@ -20,7 +20,7 @@
           {{-- Titolo --}}
           <h2>Titolo: {{$apartment->title}}</h2>
         </div>
-        <div class="col-lg-6 col-md-12 mt-lg-4 mt-md-2">
+        <div class="col-lg-4 col-md-12 mt-lg-4 mt-md-2">
           {{-- Descrizione --}}
           <p><strong>Descrizione:</strong> {{$apartment->description}}</p>
         </div>
@@ -43,6 +43,20 @@
             <li><i class="fas fa-ruler-combined"></i> <strong>Metri quadrati: </strong>{{$apartment->sqm}}</li>
           </ul>
         </div>
+        <div class="col-lg-2 col-md-6 col-sm-12 mt-lg-4 mt-md-2">
+          <span> <strong>Altri servizi </strong></span>
+          <ul>
+            @foreach ($array_tags as $tag)
+
+
+              <li>{{ $tag }}</li>
+
+
+            @endforeach
+          </ul>
+        </div>
+
+
       </div>
 
       <div class="row">
