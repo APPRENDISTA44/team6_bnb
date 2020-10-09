@@ -41,28 +41,28 @@
           <div class="mb-3">
 
             <label class="mb-2">Numero di stanze</label>
-            <input type="number" class="form-control" name="number_of_rooms" value="{{old('number_of_rooms') ? old('number_of_rooms') : $apartment->number_of_rooms}}"max="50" min="1">
+            <input type="number" pattern="[0-9]" class="form-control" name="number_of_rooms" value="{{old('number_of_rooms') ? old('number_of_rooms') : $apartment->number_of_rooms}}"max="50" min="1">
           </div>
 
           <!-- campo numero di letti -->
           <div class="mb-3">
 
             <label class="mb-2">Numero di letti</label>
-            <input type="number" class="form-control" name="number_of_beds" value="{{old('number_of_beds') ? old('number_of_beds') : $apartment->number_of_beds}}"max="150" min="1">
+            <input type="number" pattern="[0-9]" class="form-control" name="number_of_beds" value="{{old('number_of_beds') ? old('number_of_beds') : $apartment->number_of_beds}}"max="150" min="1">
           </div>
 
           <!-- campo numero di bagni -->
           <div class="mb-3">
 
             <label class="mb-2">Numbero di bagni</label>
-            <input type="number" class="form-control" name="number_of_bathrooms" value="{{old('number_of_bathrooms') ? old('number_of_bathrooms') : $apartment->number_of_bathrooms}}"max="25" min="1">
+            <input type="number" pattern="[0-9]" class="form-control" name="number_of_bathrooms" value="{{old('number_of_bathrooms') ? old('number_of_bathrooms') : $apartment->number_of_bathrooms}}"max="25" min="1">
           </div>
 
           <!-- campo matri quadrati -->
           <div class="mb-3">
 
             <label class="mb-2">Metri quadrati</label>
-            <input type="number" class="form-control" name="sqm" value="{{old('sqm') ? old('sqm') : $apartment->sqm}}"max="1000" min="10" placeholder="minimo 10">
+            <input type="number" pattern="[0-9]" class="form-control" name="sqm" value="{{old('sqm') ? old('sqm') : $apartment->sqm}}"max="1000" min="10" placeholder="minimo 10">
           </div>
 
           <!-- i checkbox creati dal foreach -->
@@ -112,7 +112,7 @@
           <div class="ms_cap mb-3">
 
             <label class="mb-2">CAP</label>
-            <input type="number" class="form-control" name="cap" value="{{old('cap') ? old('cap') : $apartment->cap}}" max="99999" min="0">
+            <input type="number" pattern="[0-9]" class="form-control" name="cap" value="{{old('cap') ? old('cap') : $apartment->cap}}" max="99999" min="0">
           </div>
 
           <!-- campo provincia -->
