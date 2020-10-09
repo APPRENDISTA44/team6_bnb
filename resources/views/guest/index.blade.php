@@ -19,7 +19,7 @@
   {{-- fine sezione search e immagine di sfondo --}}
 
 {{-- link ai messaggi ed appartamenti admin --}}
-<div class="container ms_auth_links">
+{{-- <div class="container ms_auth_links">
   <div class="row mt-4">
     <div class="col">
       @if (Auth::check())
@@ -30,7 +30,7 @@
       @endif
     </div>
   </div>
-</div>
+</div> --}}
 {{-- fine sezione dei link --}}
 
 

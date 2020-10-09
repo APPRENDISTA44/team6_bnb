@@ -45,13 +45,26 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                      @if (Auth::check())
+                        <li>
+                          <a class="nav-link" href="{{ route('messages', Auth::user()) }}">{{ __('Vedi i tuoi messaggi') }}</a>
+                        </li>
+
+                        <li>
+                          <a class="nav-link" href="{{ route('admin.apartment.list', Auth::user()) }}">{{ __('Vedi i tuoi appartamenti') }}</a>
+                        </li>
+
+                      @endif
+
                       <li class="nav-item">
                           <a class="nav-link" href="{{ route('admin.apartment.create') }}">{{ __('Crea il tuo appartamento') }}</a>
                       </li>
 
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                           <a class="nav-link" href="{{ route('login') }}">{{ __('IT') }} <i class="fas fa-globe"></i></a>
-                      </li>
+                      </li> --}}
+
+
 
                       <!-- Authentication Links -->
                       @guest
