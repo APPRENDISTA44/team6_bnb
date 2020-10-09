@@ -269,15 +269,19 @@ class IndexController extends Controller
 
         // inizializzo foreach per riempire gli array
         foreach ($dates_view_group as $date_key => $view_value ) {
-          // inserisco ogni singola data nell'array
-          $array_dates[] = $date_key;
+          // inserisco ogni singola data nell'array se non è passata una settimana
+          if ($date_key > Carbon::now(new \DateTimeZone('Europe/Rome'))->subWeek()) {
+            $array_dates[] = $date_key;
+          }
+
         }
 
         foreach ($dates_view_group as $date_key => $view_value) {
-          //inserisco il conteggio per ogni data
-          $array_views[] = count($view_value);
+          //inserisco il conteggio per ogni data se non è passata una settimana
+          if ($date_key > Carbon::now(new \DateTimeZone('Europe/Rome'))->subWeek()) {
+            $array_views[] = count($view_value);
+          }
         }
-
 
         //prendo dati dei messaggi relativi all'appartamento
 
@@ -291,7 +295,6 @@ class IndexController extends Controller
           -> groupBy('date')
           -> get();
 
-          // dd($messages);
 
           $array_messages = [];
 
@@ -307,13 +310,17 @@ class IndexController extends Controller
 
           foreach ($array_messages as $message) {
 
-            foreach ($message as $k => $v) {
-              if ($k === 'count') {
-                $array_counts_message[] = $v;
-              }elseif ($k === 'date') {
-                $array_dates_message[] = $v;
+            // inserisco ogni singola data nell'array se non è passata una settimana
+            if ($message['date'] > Carbon::now(new \DateTimeZone('Europe/Rome'))->subWeek()) {
+              foreach ($message as $k => $v) {
+                if ($k === 'count') {
+                  $array_counts_message[] = $v;
+                }elseif ($k === 'date') {
+                  $array_dates_message[] = $v;
+                }
               }
             }
+
           }
 
           //calcolo totale numero di views
@@ -360,7 +367,7 @@ class IndexController extends Controller
         if ($array_sponsors !== null) {
           //la salvo in una variabile
           $date_of_expire = $apartment->sponsors()->where('apartment_id',$apartment->id)->latest()->first()->pivot->date_end;
-
+          
           //controllo che la data di scadenza sia passata
           if ( Carbon::now(new \DateTimeZone('Europe/Rome'))->gt($date_of_expire) ) {
             //se è scaduto le do un valore 0

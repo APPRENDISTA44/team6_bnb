@@ -149,6 +149,7 @@ $(document).ready(function(){
 
            success:function(response){
             console.log(response.success);
+            console.log(response.sponsored);
             //svuoto container con i risultati degli appartamenti
             $('.ms_apartment_container').html('');
 
