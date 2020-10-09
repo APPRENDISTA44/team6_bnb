@@ -76,7 +76,7 @@ body {
     background-color: white;
     text-align: center;
     border-radius: 7px;
-    box-shadow: 0px 2px 5px 2px rgba(92, 97, 104, 0.87);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -130,7 +130,7 @@ body {
 #ms_form_create #ms_image {
   width: 100%;
   border-radius: 3%;
-  box-shadow: 0px 0px 5px 3px rgba(128, 2, 52, 0.87);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
 #ms_form_create .ms_label_image {
@@ -210,22 +210,26 @@ body {
   float: right;
 }
 
-.ms_apartment_container .card {
+.ms_apartment_container .card,
+.ms_sposored_apartment .card {
   border-radius: 16px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.ms_apartment_container .card .card-img-top {
+.ms_apartment_container .card .card-img-top,
+.ms_sposored_apartment .card .card-img-top {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   height: 180px;
 }
 
-.ms_apartment_container .card .card-title {
+.ms_apartment_container .card .card-title,
+.ms_sposored_apartment .card .card-title {
   height: 40px;
 }
 
-.ms_apartment_container .card .card-text {
+.ms_apartment_container .card .card-text,
+.ms_sposored_apartment .card .card-text {
   height: 80px;
   overflow-y: hidden;
 }
@@ -237,6 +241,10 @@ body {
 
   .ms_homepage .btn {
     top: -8px;
+  }
+
+  .ms_homepage .ms_background_image {
+    background-position: right;
   }
 
   .ms_homepage .ms_absolute {
@@ -326,6 +334,7 @@ footer h3 {
   font-size: 12px;
   font-weight: 800;
   margin-bottom: 35px;
+  text-transform: uppercase;
 }
 
 footer section {
@@ -334,9 +343,36 @@ footer section {
   margin-bottom: 24px;
 }
 
+footer .social {
+  display: flex;
+  justify-content: flex-start;
+}
+
+footer .social li {
+  margin: 0 15px 0 0;
+}
+
+footer .social i {
+  font-size: 22px;
+}
+
+footer .colophone {
+  border-top: 1px solid #ddd;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 @media screen and (min-width: 767px) {
   section {
     border-bottom: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .colophone {
+    border-top: none !important;
   }
 }
 
@@ -380,13 +416,22 @@ footer section {
   margin-top: -50px;
 }
 
-.ms_apartment_list .card {
-  margin-top: 20px;
-  flex-direction: row;
+.ms_style {
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 10px 0;
 }
 
-.ms_apartment_list .card img {
-  width: 40%;
+.ms_style .ms_links {
+  margin-top: 10px;
+  display: block;
+  width: 150px;
+  text-align: center;
+}
+
+.ms_style img {
+  border-radius: 7px;
 }
 
 .ms_message_list table {

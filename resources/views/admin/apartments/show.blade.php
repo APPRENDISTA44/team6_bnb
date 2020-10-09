@@ -57,20 +57,6 @@
               @endforeach
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 mt-lg-4 mt-md-2">
-          <span> <strong>Altri servizi </strong></span>
-          <ul>
-            @foreach ($array_tags as $tag)
-
-
-              <li>{{ $tag }}</li>
-
-
-            @endforeach
-          </ul>
-        </div>
-
-
       </div>
 
       <div class="row">
@@ -109,6 +95,14 @@
                 <div class="ms_admin_show_links">
                   <a class="ms_links" href="{{route('admin.apartment.chart',$apartment, Auth::user())}}">Vedi le statistiche</a>
                 </div>
+
+                <div class="ms_admin_show_links">
+                  <a class="ms_links" href="{{route('admin.apartment.sponsor',$apartment, Auth::user())}}">Sposorizza</a>
+                </div>
+
+              <div class="ms_admin_show_links">
+                <a class="ms_links" href="{{route('admin.apartment.edit',$apartment, Auth::user())}}">Modifica</a>
+              </div>
               @endif
             </div>
         {{-- fine sezione dei link --}}

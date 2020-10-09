@@ -89,7 +89,8 @@
 // fine sezione ricerca filtri
 
 // sezione card per mostrare appartamenti
-.ms_apartment_container .card {
+.ms_apartment_container .card,
+.ms_sposored_apartment .card {
   border-radius: 16px;
   box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
   .card-img-top {
@@ -120,7 +121,9 @@
   .ms_homepage .btn {
     top: -8px;
   }
-
+  .ms_homepage .ms_background_image  {
+    background-position: right;
+  }
   .ms_homepage .ms_absolute {
     top: 55%;
   }
