@@ -18,7 +18,8 @@ class CreateViewsTable extends Migration
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')
                   ->references('id')
-                  ->on('apartments');
+                  ->on('apartments')
+                  ->onDelete('cascade');
             $table->date('date');
             $table->timestamps();
         });
