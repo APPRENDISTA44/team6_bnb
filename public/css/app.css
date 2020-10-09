@@ -239,7 +239,8 @@ body {
 }
 
 .ms_apartment_sponsored_container .card {
-  background-color: #184157;
+  background-color: #D9FB19;
+  border: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -362,6 +363,11 @@ footer .social li {
 
 footer .social i {
   font-size: 22px;
+}
+
+footer .container {
+  border-top: 1px solid #ddd;
+  padding: 50px 0 0 0;
 }
 
 footer .colophone {

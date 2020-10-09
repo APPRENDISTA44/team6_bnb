@@ -1,4 +1,6 @@
 footer {
+
+
   color: $tertiary_color;
   ul li {
     list-style-type: none;
@@ -35,7 +37,10 @@ footer {
       font-size: 22px;
     }
   }
-
+  .container {
+    border-top: 1px solid #ddd;
+    padding: 50px 0 0 0;
+  }
   .colophone {
     border-top: 1px solid #ddd;
     font-weight: 300;
