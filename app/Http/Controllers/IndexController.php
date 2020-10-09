@@ -22,13 +22,18 @@ class IndexController extends Controller
       $sponsors = ApartmentSponsor::all();
       $sponsors_filtered = $sponsors->where('date_end', '>', Carbon::now(new \DateTimeZone('Europe/Rome')))->groupBy('apartment_id');
       $array_sponsored_apartment = [];
+
       foreach ($sponsors_filtered as $key => $value) {
-        $array_sponsored_apartment[] = Apartment::find($key);
+        $apartment = Apartment::find($key);
+        $apartment_availability = $apartment->availability;
+        if ($apartment_availability === 1) {
+          $array_sponsored_apartment[] = $apartment;
+        }
       }
 
         // dd($array_sponsored_apartment);
 
-      //passa alla index i tags da mostrare per filtrare  
+      //passa alla index i tags da mostrare per filtrare
       $tags = Tag::all();
       return view('guest.index', compact('tags','array_sponsored_apartment'));
     }
@@ -59,7 +64,6 @@ class IndexController extends Controller
       //ciclo per filtrare gli appartamenti
       foreach ($apartments as $apartment) {
         $array_apartment_tag = [];
-
 
         $apartment_rooms = $apartment->number_of_rooms;
         $apartment_beds = $apartment->number_of_beds;
@@ -112,8 +116,23 @@ class IndexController extends Controller
       });
 
 
+      //ritorno gli appartamenti disponibili in evidenza
+      //trovo gli appartamenti sponsorizzati per popolare la sezione in evidenza
+      $sponsors = ApartmentSponsor::all();
+      $sponsors_filtered = $sponsors->where('date_end', '>', Carbon::now(new \DateTimeZone('Europe/Rome')))->groupBy('apartment_id');
+      $array_sponsored_apartment = [];
+
+      foreach ($sponsors_filtered as $key => $value) {
+        $apartment = Apartment::find($key);
+        $apartment_availability = $apartment->availability;
+        if ($apartment_availability === 1) {
+          $array_sponsored_apartment[] = $apartment;
+        }
+      }
+
+
       // ritorno in formato json l'array dei risultati
-      return response()->json(['success'=>$array_results]);
+      return response()->json(['success'=>$array_results, 'sponsored'=>$array_sponsored_apartment]);
     }
 
     //funzione per calcolare la distanza tra due punti

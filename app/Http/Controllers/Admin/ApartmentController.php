@@ -88,7 +88,7 @@ class ApartmentController extends Controller
         $apartment_new->tags()->sync($data['tags']);
       }
 
-      // todo: Return redirect show
+        return redirect()->route('admin.apartment.show', $apartment_new);
     }
 
     /**
@@ -193,10 +193,9 @@ class ApartmentController extends Controller
       // Update dei dati dell'apartamento
       $apartment->update($data);
 
+      return redirect()->route('admin.apartment.show', $apartment);
 
 
-
-      // todo: Return redirect show
 
     }
 
@@ -206,9 +205,9 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+      
     }
 
     // Funzione con le regole di validazione

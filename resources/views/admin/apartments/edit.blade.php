@@ -1,7 +1,18 @@
 @extends('layouts.app')
 @section('content')
   <div class="container" id="ms_form_create">
-    <h1 class="mt-4 mb-3">Inserisci il tuo appartamento</h1>
+    <div class="ms_title_delete_container d-flex justify-content-between align-items-center">
+      <h1 class="mt-4 mb-3">Inserisci il tuo appartamento</h1>
+
+      <form action="{{ route('admin.apartment.destroy', $apartment) }}" method="post">
+        @csrf
+        @method('DELETE')
+
+        <input type="submit" class="btn btn-danger" value="Elimina appartamento">
+      </form>
+
+    </div>
+
     <div class="row">
       <div class="col-12">
 
@@ -124,7 +135,7 @@
 
           <!-- il bottone per generare le coordinate -->
 
-          <button type="button" class="btn btn-success mb-3" id="ms_coordinate_generator">Genera coordinate</button>
+          <button type="button" class="btn btn-success mb-3" id="ms_coordinate_generator">Genera coordinate e procedi</button>
           <div class="d-none ms_error">Alcuni campi sono scorretti</div>
 
           <!-- le coordinate -->
@@ -149,7 +160,7 @@
           </div>
 
           <!-- salva -->
-          <div class="mb-3">
+          <div class="mb-3 ms_submit">
 
             <input type="submit" class="btn btn-primary" name="" value="salva appartamento">
           </div>
