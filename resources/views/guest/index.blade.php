@@ -17,40 +17,42 @@
   </div>
 
   {{-- fine sezione search e immagine di sfondo --}}
-
-  <div class="container ms_sposored_apartment">
-    <div class="row mt-4">
-      <div class="col">
-        <h3>Appartementi in Evidenza</h3>
+  @if (!empty($array_sponsored_apartment))
+    <div class="container ms_sposored_apartment">
+      <div class="row mt-4">
+        <div class="col">
+          <h3>Appartementi in Evidenza</h3>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      {{--  sezione con gli appartamenti sponsorizzati --}}
-      @foreach ($array_sponsored_apartment as $sponsored_apartment)
+      <div class="row">
+        {{--  sezione con gli appartamenti sponsorizzati --}}
+        @foreach ($array_sponsored_apartment as $sponsored_apartment)
 
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
 
-          <!-- card singolo appartamento-->
-          <div class="card">
-            <img src="{{asset('storage') . "/" . $sponsored_apartment->image }}" alt="{{$sponsored_apartment->title}}" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">{{$sponsored_apartment->title}}</h5>
-              <p class="card-text">{{$sponsored_apartment->description}}</p>
+            <!-- card singolo appartamento-->
+            <div class="card">
+              <img src="{{asset('storage') . "/" . $sponsored_apartment->image }}" alt="{{$sponsored_apartment->title}}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{$sponsored_apartment->title}}</h5>
+                <p class="card-text">{{$sponsored_apartment->description}}</p>
 
-              @if (Auth::check())
-                <a class="ms_links" href="admin/apartment/@{{id}}">Vedi dettagli</a>
-              @else
-                <a class="ms_links" href="guest/apartment/@{{id}}">Vedi dettagli</a>
-              @endif
+                @if (Auth::check())
+                  <a class="ms_links" href="admin/apartment/@{{id}}">Vedi dettagli</a>
+                @else
+                  <a class="ms_links" href="guest/apartment/@{{id}}">Vedi dettagli</a>
+                @endif
+              </div>
             </div>
           </div>
-        </div>
 
-      @endforeach
+        @endforeach
+      </div>
+
     </div>
+  @endif
 
-  </div>
 
 {{-- sezione scelta filtri --}}
 <div id="ms_filter_search" class="d-none">
@@ -118,7 +120,7 @@
 {{-- inizio sezione che mostra appartamenti --}}
   <div class="container">
     <div class="row ms_apartment_sponsored_container">
-      
+
     </div>
   </div>
 {{-- fine sezione che mostra appartamenti --}}
