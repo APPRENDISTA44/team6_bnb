@@ -15,12 +15,12 @@
 }
 
 .ms_homepage .ms_background_image {
-  background-image: url('/../images/air2.jpg');
+  background-image: url('/../images/home.gif');
   // height: 550px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center, center;
-  height: 100vh;
+  height: calc(100vh - 70px);
   // background-size: cover;
   // width: 100%;
   // height: 350px;
