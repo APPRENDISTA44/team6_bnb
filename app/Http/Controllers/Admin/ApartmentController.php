@@ -103,9 +103,12 @@ class ApartmentController extends Controller
       $apartment = Apartment::find($id);
 
       $array_tags = [];
-      foreach ($apartment->tags as $tags) {
-        $array_tags[] = $tags->tag;
+      if (!empty($apartment->tags)) {
+        foreach ($apartment->tags as $tags) {
+          $array_tags[] = $tags->tag;
+        }
       }
+      // dd($apartment);
 
       // trovo l'id utente loggato
       $user_id = Auth::id();

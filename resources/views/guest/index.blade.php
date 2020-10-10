@@ -39,9 +39,9 @@
                 <p class="card-text">{{$sponsored_apartment->description}}</p>
 
                 @if (Auth::check())
-                  <a class="ms_links" href="admin/apartment/@{{id}}">Vedi dettagli</a>
+                  <a class="ms_links" href="admin/apartment/{{$sponsored_apartment->id}}">Vedi dettagli</a>
                 @else
-                  <a class="ms_links" href="guest/apartment/@{{id}}">Vedi dettagli</a>
+                  <a class="ms_links" href="guest/apartment/{{$sponsored_apartment->id}}">Vedi dettagli</a>
                 @endif
               </div>
             </div>

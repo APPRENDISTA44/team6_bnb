@@ -68,6 +68,7 @@
                 },
                 success:function(response){
                   console.log(response.success);
+                  location.reload();
                 },
                 // Se ci sono errori
                 error: function(){
