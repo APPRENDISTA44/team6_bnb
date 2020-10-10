@@ -1,7 +1,6 @@
 footer {
-
-
   color: $tertiary_color;
+  background-color: #ddd;
   ul li {
     list-style-type: none;
     margin-top: 16px;
@@ -22,7 +21,7 @@ footer {
   }
 
   section {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 24px;
     margin-bottom: 24px;
   }
@@ -31,18 +30,21 @@ footer {
     display: flex;
     justify-content: flex-start;
     li {
-      margin: 0 15px 0 0;
+      margin: 0 20px 0 0;
+      :hover {
+      color: $secondary_color;
+    }
     }
     i {
       font-size: 22px;
     }
   }
   .container {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ccc;
     padding: 50px 0 0 0;
   }
   .colophone {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ccc;
     font-weight: 300;
     display: flex;
     justify-content: center;
@@ -50,10 +52,7 @@ footer {
   }
 }
 
-
-
 // media queries
-
 @media screen and (min-width: 767px) {
   section {
     border-bottom: none!important;
@@ -62,5 +61,11 @@ footer {
 @media screen and (max-width: 767px) {
   .colophone {
     border-top: none!important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  footer section {
+    padding: 0 20px;
   }
 }

@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-5">
 
         {{-- mappa --}}
         <div class="col-md-6 col-sm-12">

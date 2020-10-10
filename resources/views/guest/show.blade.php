@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col">
         @if (Auth::check())
-          <h1>Ciao {{$user->name}}</h1>
+          <h1>Ciao {{$user->name}},</h1>
         @else
           <h1>Ciao ospite,</h1>
         @endif
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-5">
       <div class="col-12">
         {{-- Titolo --}}
         <h2>Titolo: {{$apartment->title}}</h2>
@@ -47,8 +47,9 @@
       </div>
 
       <div class="col-lg-2 col-md-6 col-sm-12 mt-lg-4 mt-md-2">
-        <span> <strong>Altri servizi </strong></span>
-        <ul>
+
+        <ul class="ms_list_tags">
+            <li><strong>Altri servizi </strong></li>
             @foreach ($array_tags as $tag)
 
 
@@ -60,7 +61,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-5">
 
       {{-- mappa --}}
       <div class="col-md-6 col-sm-12">

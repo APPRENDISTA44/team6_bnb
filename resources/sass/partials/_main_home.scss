@@ -97,7 +97,10 @@
   .card-img-top {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    height: 180px;
+    // height: 180px;
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
   }
   .card-title {
     height: 40px;
@@ -143,7 +146,9 @@
   // fine above the fold
 
   // card
-  .ms_apartment_container .card .card-img-top {
+  .ms_apartment_container .card .card-img-top,
+  .ms_sposored_apartment .card .card-img-top,
+  .ms_apartment_sponsored_container .card .card-img-top {
     height: auto;
   }
   // fine card
