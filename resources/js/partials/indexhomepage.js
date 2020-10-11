@@ -6,6 +6,8 @@ $(document).ready(function(){
   var url = "https://api.tomtom.com/search/2/search/";
   var format = ".json";
 
+  var searched = 0;
+
   // Messaggio di Errore
   var errorMessage = 'I campi sono sbagliati';
 
@@ -24,11 +26,11 @@ $(document).ready(function(){
 
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function(){
-
+    var inputSearch = $('#ms_homepage input').val().trim();
+    searched = inputSearch;
     // Faccio latra chiamata AJAX per passare i dati al controller
-    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
-
-    window.scrollTo(0,700);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
+    window.scrollTo(0,2000);
 
 
   });
@@ -37,9 +39,11 @@ $(document).ready(function(){
   //evento pressione tasto invio
   $('#ms_homepage input').keypress(function(event){
     if (event.which === 13) {
+      var inputSearch = $('#ms_homepage input').val().trim();
+      searched = inputSearch;
       // Faccio latra chiamata AJAX per passare i dati al controller
-      sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
-      window.scrollTo(0,700);
+      sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
+      window.scrollTo(0,2000);
     }
 
 
@@ -54,7 +58,7 @@ $(document).ready(function(){
     rangeRooms = $('#formControlRangeRooms').val();
     $('.ms_range_rooms').text( rangeRooms );
     // Faccio latra chiamata AJAX per passare i dati al controller
-    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,0);
 
 
   });
@@ -66,7 +70,7 @@ $(document).ready(function(){
 
     //cattura dati indirizzo dal form
     var inputSearch = $('#ms_homepage input').val().trim();
-    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,0);
 
   });
 
@@ -77,7 +81,7 @@ $(document).ready(function(){
     rangeKm = $('#formControlRangeKm').val();
     $('.ms_range_km').text( rangeKm );
     // Faccio latra chiamata AJAX per passare i dati al controller
-     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,0);
 
   });
 
@@ -106,10 +110,11 @@ $(document).ready(function(){
 });
 
   //funzione per chiamata ajax che ritorna json
-  function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags) {
-
-  //cattura dati indirizzo dal form
-  var inputSearch = $('#ms_homepage input').val().trim();
+  function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch) {
+  if (inputSearch === 0) {
+    //cattura dati indirizzo dal form
+     inputSearch = searched;
+  }
 
   // Controllo validazione campi
   if ((inputSearch == "") ||  (inputSearch.length < 2) ) {
@@ -171,7 +176,9 @@ $(document).ready(function(){
               $('h2.ms_evidence').text('Appartamenti in evidenza');
             }
             if (response.success.length !== 0) {
-              $('h2.ms_searched').text('Appartamenti per ' + $('#ms_homepage input').val() );
+              $('h2.ms_searched').text('Appartamenti per ' + searched );
+            }else {
+              $('h2.ms_searched').text('Nessun appartamento trovato');
             }
 
             // mostro i filtri
@@ -195,7 +202,7 @@ $(document).ready(function(){
               var html = template(singleApartment);
               $('.ms_apartment_container').append(html);
             }
-
+            $('#ms_homepage input').val('');
           },
 
           // Se ci sono errori

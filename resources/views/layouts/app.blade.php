@@ -70,11 +70,11 @@
                       <!-- Authentication Links -->
                       @guest
                           <li class="nav-item">
-                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} <i class="fas fa-user"></i> </a>
+                              <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }} <i class="fas fa-user"></i> </a>
                           </li>
                           @if (Route::has('register'))
                               <li class="nav-item">
-                                  <a class="nav-link ms_header_button" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                  <a class="nav-link ms_header_button" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                               </li>
                           @endif
                       @else
