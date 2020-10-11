@@ -39,8 +39,9 @@ $(document).ready(function(){
     if (event.which === 13) {
       // Faccio latra chiamata AJAX per passare i dati al controller
       sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+      window.scrollTo(0,700);
     }
-    window.scrollTo(0,700);
+
 
   });
 
