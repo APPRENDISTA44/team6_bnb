@@ -28,6 +28,9 @@ $(document).ready(function(){
     // Faccio latra chiamata AJAX per passare i dati al controller
     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
 
+    window.scrollTo(0,700);
+
+
   });
   // fine evento click sul search
 
@@ -37,6 +40,7 @@ $(document).ready(function(){
       // Faccio latra chiamata AJAX per passare i dati al controller
       sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
     }
+    window.scrollTo(0,700);
 
   });
 
@@ -190,7 +194,7 @@ $(document).ready(function(){
               var html = template(singleApartment);
               $('.ms_apartment_container').append(html);
             }
-            $('#ms_homepage input').val('');
+
           },
 
           // Se ci sono errori

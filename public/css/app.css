@@ -241,6 +241,7 @@ body {
 .ms_apartment_sponsored_container .card .card-title {
   height: 40px;
   font-weight: bold;
+  overflow-y: hidden;
 }
 
 .ms_apartment_container .card .card-text,
