@@ -5,14 +5,15 @@
   <div class="ms_homepage" id="ms_homepage">
     <div class="ms_background_image">
       <div class=" ms_absolute">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="Dove vuoi andare?" aria-label="Search">
+        <button class="btn my-2 my-sm-0" id="ms_search_button" type="submit">Cerca</button>
       </div>
     </div>
     <div class="text">
-      <h1>Riscopri L'italia</h1>
-      <p>Cambia quadro. Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
-      <a href="#">Esplora i dintorni</a>
+      <blockquote>
+        <h2>Il mondo è un libro, e chi non viaggia ne legge solo una pagina.</h2>
+        <cite>Agostino d’Ippona</cite>
+      </blockquote>
     </div>
   </div>
 
@@ -21,7 +22,7 @@
     <div class="container ms_sposored_apartment">
       <div class="row mt-4">
         <div class="col">
-          <h3>Appartementi in Evidenza</h3>
+          <h2>Appartamenti in Evidenza</h2>
         </div>
       </div>
 
@@ -29,7 +30,7 @@
         {{--  sezione con gli appartamenti sponsorizzati --}}
         @foreach ($array_sponsored_apartment as $sponsored_apartment)
 
-          <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+          <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
 
             <!-- card singolo appartamento-->
             <div class="card">
@@ -68,10 +69,10 @@
                 <div class="row">
                   @foreach ($tags as $tag)
 
-                          <div class="col-md-6 col-sm-12">
-                            <input class="ms_checkbox" type="checkbox" name="tags[]" value="{{$tag->id}}">
-                            <label>{{$tag->tag}}</label>
-                          </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input class="ms_checkbox" type="checkbox" name="tags[]" value="{{$tag->id}}">
+                      <label>{{$tag->tag}}</label>
+                    </div>
 
                   @endforeach
                 </div>
@@ -117,16 +118,19 @@
 </div>
 {{-- FINE SEZIONE FILTRI --}}
 
-{{-- inizio sezione che mostra appartamenti --}}
-  <div class="container">
+{{-- inizio sezione che mostra appartamenti in evidenza --}}
+  <div class="container mt-3">
+    <h2 class="ms_evidence"></h2>
     <div class="row ms_apartment_sponsored_container">
 
     </div>
   </div>
-{{-- fine sezione che mostra appartamenti --}}
+{{-- fine sezione che mostra appartamenti in evidenza--}}
 
 {{-- inizio sezione che mostra appartamenti --}}
-  <div class="container">
+  <div class="container mt-5">
+    <h2 class="ms_searched"></h2>
+
     <div class="row ms_apartment_container">
 
     </div>

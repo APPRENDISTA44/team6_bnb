@@ -220,6 +220,14 @@ class IndexController extends Controller
 
       $new_message->save();
 
+      if (Auth::check()) {
+        return redirect()->route('admin.apartment.show', $apartment);
+
+      }else {
+        return redirect()->route('guest.show', $apartment->id);
+
+      }
+
     }
     //gestisco i messaggi ricevuti da un utente
     public function messages(User $user){
@@ -367,7 +375,7 @@ class IndexController extends Controller
         if ($array_sponsors !== null) {
           //la salvo in una variabile
           $date_of_expire = $apartment->sponsors()->where('apartment_id',$apartment->id)->latest()->first()->pivot->date_end;
-          
+
           //controllo che la data di scadenza sia passata
           if ( Carbon::now(new \DateTimeZone('Europe/Rome'))->gt($date_of_expire) ) {
             //se è scaduto le do un valore 0

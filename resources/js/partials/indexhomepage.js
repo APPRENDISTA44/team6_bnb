@@ -31,6 +31,14 @@ $(document).ready(function(){
   });
   // fine evento click sul search
 
+  //evento pressione tasto invio
+  $('#ms_homepage input').keypress(function(event){
+    if (event.which === 13) {
+      // Faccio latra chiamata AJAX per passare i dati al controller
+      sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+    }
+
+  });
 
 
 
@@ -154,6 +162,13 @@ $(document).ready(function(){
             $('.ms_apartment_container').html('');
             $('.ms_apartment_sponsored_container').html('');
 
+            if (response.sponsored.length !== 0) {
+              $('h2.ms_evidence').text('Appartamenti in evidenza');
+            }
+            if (response.success.length !== 0) {
+              $('h2.ms_searched').text('Appartamenti per ' + $('#ms_homepage input').val() );
+            }
+
             // mostro i filtri
             $('#ms_filter_search').removeClass('d-none');
             //nascondo appartamenti in evidenza
@@ -175,7 +190,7 @@ $(document).ready(function(){
               var html = template(singleApartment);
               $('.ms_apartment_container').append(html);
             }
-
+            $('#ms_homepage input').val('');
           },
 
           // Se ci sono errori
