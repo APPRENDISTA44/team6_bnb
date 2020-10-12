@@ -30,7 +30,7 @@ $(document).ready(function(){
     searched = inputSearch;
     // Faccio latra chiamata AJAX per passare i dati al controller
     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
-    window.scrollTo(0,2000);
+
 
 
   });
@@ -43,7 +43,7 @@ $(document).ready(function(){
       searched = inputSearch;
       // Faccio latra chiamata AJAX per passare i dati al controller
       sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
-      window.scrollTo(0,2000);
+
     }
 
 
@@ -104,16 +104,19 @@ $(document).ready(function(){
     }
     console.log(arrayTags);
     // Faccio latra chiamata AJAX per passare i dati al controller
-     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags);
+     sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,0);
 
 
 });
 
   //funzione per chiamata ajax che ritorna json
   function sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch) {
+    var flag = 0;
   if (inputSearch === 0) {
     //cattura dati indirizzo dal form
      inputSearch = searched;
+  }else {
+    flag = 1;
   }
 
   // Controllo validazione campi
@@ -203,6 +206,15 @@ $(document).ready(function(){
               $('.ms_apartment_container').append(html);
             }
             $('#ms_homepage input').val('');
+
+            if (flag === 1) {
+              if (window.matchMedia('(max-width: 767px)').matches) {
+                window.scrollTo(0,760);
+              }else {
+                window.scrollTo(0,760);
+              }
+
+            }
           },
 
           // Se ci sono errori

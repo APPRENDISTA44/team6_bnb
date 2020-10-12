@@ -54,6 +54,14 @@
     </div>
   @endif
 
+  {{-- inizio sezione che mostra appartamenti in evidenza --}}
+    <div class="container mt-4">
+      <h2 class="ms_evidence"></h2>
+      <div class="row ms_apartment_sponsored_container">
+
+      </div>
+    </div>
+  {{-- fine sezione che mostra appartamenti in evidenza--}}
 
 {{-- sezione scelta filtri --}}
 <div id="ms_filter_search" class="d-none">
@@ -118,17 +126,9 @@
 </div>
 {{-- FINE SEZIONE FILTRI --}}
 
-{{-- inizio sezione che mostra appartamenti in evidenza --}}
-  <div class="container mt-3">
-    <h2 class="ms_evidence"></h2>
-    <div class="row ms_apartment_sponsored_container">
-
-    </div>
-  </div>
-{{-- fine sezione che mostra appartamenti in evidenza--}}
 
 {{-- inizio sezione che mostra appartamenti --}}
-  <div class="container mt-5">
+  <div class="container mt-3">
     <h2 class="ms_searched"></h2>
 
     <div class="row ms_apartment_container">
