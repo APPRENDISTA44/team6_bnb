@@ -16,9 +16,9 @@
   		Sembra che tu ti sia perso...
   		</h3>
 
-  		<p>la pagina che cerchi non è disponibile!</p>
+  		<p>La pagina che cerchi non è disponibile!</p>
 
-  		<a href="{{route('home')}}" class="link_404">Vai alla Home</a>
+  		<a href="{{route('home')}}" class="ms_links">Vai alla Home</a>
   	</div>
   		</div>
   		</div>
