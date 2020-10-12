@@ -26,6 +26,15 @@ $(document).ready(function(){
 
   // evento click sul bottone ricerca
   $('#ms_homepage #ms_search_button').on('click', function(){
+    $('#formControlRangeRooms').val('1');
+    $('#formControlRangeBeds').val('1');
+    $('#formControlRangeKm').val('20');
+
+    $('.ms_range_rooms').text('');
+    $('.ms_range_km').text('');
+    $('.ms_range_rooms').text('');
+
+
     var inputSearch = $('#ms_homepage input').val().trim();
     searched = inputSearch;
     // Faccio latra chiamata AJAX per passare i dati al controller
@@ -39,6 +48,14 @@ $(document).ready(function(){
   //evento pressione tasto invio
   $('#ms_homepage input').keypress(function(event){
     if (event.which === 13) {
+      $('#formControlRangeRooms').val('1');
+      $('#formControlRangeBeds').val('1');
+      $('#formControlRangeKm').val('20');
+
+      $('.ms_range_rooms').text('');
+      $('.ms_range_km').text('');
+      $('.ms_range_rooms').text('');
+
       var inputSearch = $('#ms_homepage input').val().trim();
       searched = inputSearch;
       // Faccio latra chiamata AJAX per passare i dati al controller

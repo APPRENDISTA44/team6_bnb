@@ -99,7 +99,7 @@
         <div class="form-group">
            <label for="formControlRangeRooms">seleziona numero di stanze</label>
            <span class="ms_range_rooms"></span>
-           <input type="range" class="form-control-range" id="formControlRangeRooms" min="1" max="50">
+           <input type="range" class="form-control-range" id="formControlRangeRooms" min="1" max="15">
         </div>
       </div>
 
@@ -107,7 +107,7 @@
         <div class="form-group">
            <label for="formControlRangeBeds">seleziona numero di letti</label>
            <span class="ms_range_beds"></span>
-           <input type="range" class="form-control-range" id="formControlRangeBeds" min="1" max="150">
+           <input type="range" class="form-control-range" id="formControlRangeBeds" min="1" max="10">
 
         </div>
       </div>
