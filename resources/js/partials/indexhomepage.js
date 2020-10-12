@@ -5,7 +5,7 @@ $(document).ready(function(){
   var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
   var url = "https://api.tomtom.com/search/2/search/";
   var format = ".json";
-  
+
   var searched = 0;
 
   // Messaggio di Errore
@@ -32,13 +32,13 @@ $(document).ready(function(){
 
     $('.ms_range_rooms').text('');
     $('.ms_range_km').text('');
-    $('.ms_range_rooms').text('');
+    $('.ms_range_beds').text('');
 
 
     var inputSearch = $('#ms_homepage input').val().trim();
     searched = inputSearch;
     // Faccio latra chiamata AJAX per passare i dati al controller
-    sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
+    sentDataToIndex(1,1,20,arrayTags,inputSearch);
 
 
 
@@ -54,12 +54,12 @@ $(document).ready(function(){
 
       $('.ms_range_rooms').text('');
       $('.ms_range_km').text('');
-      $('.ms_range_rooms').text('');
+      $('.ms_range_beds').text('');
 
       var inputSearch = $('#ms_homepage input').val().trim();
       searched = inputSearch;
       // Faccio latra chiamata AJAX per passare i dati al controller
-      sentDataToIndex(rangeRooms,rangeBeds,rangeKm,arrayTags,inputSearch);
+      sentDataToIndex(1,1,20,arrayTags,inputSearch);
 
     }
 
