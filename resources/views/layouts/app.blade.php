@@ -178,7 +178,7 @@
           <div class="container colophone">
             <div class="row">
               <div class="col-12">
-                <p>© 2020 Team6Bnb  , Inc. All rights reserved - Luca Isidoro, Linda Minotti, Alioune Pèn, Tommaso Venza - <a href="#">Privacy Policy</a> - <a href="#">Cookie Policy</a>  </p>
+                <p>© 2020 Team6Bnb  , Inc. All rights reserved - <span id="ms_names">Luca Isidoro, Linda Minotti, Alioune Pèn, Tommaso Venza </span> - <a href="#">Privacy Policy</a> - <a href="#">Cookie Policy</a>  </p>
               </div>
             </div>
           </div>

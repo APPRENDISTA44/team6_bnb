@@ -401,7 +401,12 @@ footer .colophone {
   font-weight: 300;
   display: flex;
   justify-content: center;
+  padding: 0 20px;
   padding-top: 20px;
+}
+
+footer .colophone #ms_names {
+  font-weight: bold;
 }
 
 @media screen and (min-width: 767px) {
