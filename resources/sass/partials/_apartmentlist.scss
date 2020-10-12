@@ -13,3 +13,20 @@
     border-radius: 7px;
   }
 }
+.ms_apartment_list h5{
+    font-weight: bold;
+    overflow-y: hidden;
+}
+.ms_apartment_list p{
+  max-height: 70px;
+  overflow: hidden;
+}
+@media screen and (max-width:992px){
+  .ms_apartment_list h5{
+    margin-top: 10px;
+  }
+  .ms_apartment_list p{
+    max-height: 100px;
+    overflow: hidden;
+  }
+}

@@ -5,7 +5,7 @@ $(document).ready(function(){
   var api_key = "GtzDpsAXELltupPjSlfBcqWR2zqzfjKy";
   var url = "https://api.tomtom.com/search/2/search/";
   var format = ".json";
-
+  
   var searched = 0;
 
   // Messaggio di Errore
